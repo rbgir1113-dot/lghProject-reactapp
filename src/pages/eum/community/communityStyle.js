@@ -46,3 +46,24 @@ export const flexBetweenTopRow = css`
 `;
 
 // 가운데 정렬 할 수 있도록 하기
+
+// 텍스트 필드 스타일 정의
+export const textFieldStyle = css`
+  width: 100%;
+  padding: 16px 24px;
+  background: ${theme.PALETTE.white};
+  border: 1px solid ${theme.GRAYSCALE[8]};
+  border-radius: 8px;
+  color: ${theme.TEXT_COLOR.basic};
+  box-sizing: border-box;
+  outline: none;
+
+  &::placeholder {
+    color: ${theme.GRAYSCALE[9]};
+    white-space: nowrap;
+  }
+
+  &:focus {
+    border-color: ${theme.PALETTE.primary.main};
+  }
+`;

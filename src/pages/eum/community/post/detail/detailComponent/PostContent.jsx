@@ -22,6 +22,7 @@ import {
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { h11Bold, h11Regular } from "../../../../../../styles/common";
 
 const { PALETTE, GRAYSCALE, TEXT_COLOR, FONT_SIZE, FONT_WEIGHT } = theme;
 
@@ -36,6 +37,7 @@ const linkIconImg =
 const PostHeader = styled.div`
   display: flex;
   align-items: center;
+  /* width: 984px; */
   gap: 20px;
   background: ${PALETTE.primary.main};
   padding: 15px 52px;
@@ -47,10 +49,7 @@ const CategoryTag = styled.span`
   border: 1px solid ${TAG_ON_PRIMARY.border};
   color: ${PALETTE.white};
   font-family: ${FONT_FAMILY};
-  font-weight: ${FONT_WEIGHT.bold};
-  font-size: ${FONT_SIZE.h11};
-  letter-spacing: -0.24px;
-  line-height: 20px;
+  ${h11Bold}
   padding: 4px 16px;
   border-radius: ${RADIUS.pill};
   white-space: nowrap;
@@ -58,10 +57,8 @@ const CategoryTag = styled.span`
 
 const BreadcrumbPath = styled.p`
   font-family: ${FONT_FAMILY};
-  font-weight: ${FONT_WEIGHT.regular};
-  font-size: ${FONT_SIZE.h11};
   color: ${TAG_ON_PRIMARY.text};
-  letter-spacing: -0.24px;
+  ${h11Regular}
   margin: 0;
   white-space: nowrap;
 `;
@@ -71,6 +68,7 @@ const BodyWrapper = styled.div`
   background: ${SURFACE.card};
   border-radius: 0 0 ${RADIUS.card} ${RADIUS.card};
   padding: 44px 52px;
+  width: 984px;
   display: flex;
   flex-direction: column;
   gap: 12px;
