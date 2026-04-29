@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import theme from "../../styles/theme";
-import { Link } from "react-router-dom";
 
 
 // 전체

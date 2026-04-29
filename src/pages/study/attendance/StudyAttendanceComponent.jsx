@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import StudyAttendancePopup from './StudyAttendancePopup';
 
 // 출석체크 화면
