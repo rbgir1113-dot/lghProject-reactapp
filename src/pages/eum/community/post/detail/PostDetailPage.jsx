@@ -52,87 +52,6 @@ const Page = styled.div`
   flex-direction: column;
 `;
 
-/* ══ Header ══ */
-const Header = styled.header`
-  background: ${SURFACE.card};
-  height: ${LAYOUT.headerHeight};
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 300px;
-  border-bottom: 1px solid ${GRAYSCALE[8]};
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  box-sizing: border-box;
-`;
-
-const LogoArea = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-`;
-
-const LogoSign = styled.img`
-  height: 28px;
-  object-fit: contain;
-`;
-
-const LogoText = styled.span`
-  font-family: ${FONT_FAMILY};
-  font-weight: ${FONT_WEIGHT.bold};
-  font-size: ${FONT_SIZE.h8};
-  color: ${PALETTE.primary.main};
-`;
-
-const Nav = styled.nav`
-  display: flex;
-  align-items: center;
-  gap: 49px;
-`;
-
-const NavItem = styled.a`
-  font-family: ${FONT_FAMILY};
-  font-weight: ${FONT_WEIGHT.bold};
-  font-size: ${FONT_SIZE.h10};
-  color: ${PALETTE.primary.dark};
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
-
-  &:hover {
-    color: ${PALETTE.primary.main};
-  }
-`;
-
-const HeaderButtons = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-const HeaderBtn = styled.button`
-  font-family: ${FONT_FAMILY};
-  font-weight: ${FONT_WEIGHT.bold};
-  font-size: ${FONT_SIZE.h10};
-  letter-spacing: -0.28px;
-  padding: 8px 16px;
-  border-radius: ${RADIUS.sm};
-  cursor: pointer;
-  white-space: nowrap;
-  background: ${({ variant }) =>
-    variant === "filled" ? PALETTE.primary.main : SURFACE.card};
-  color: ${({ variant }) =>
-    variant === "filled" ? PALETTE.white : PALETTE.primary.main};
-  border: 2px solid ${PALETTE.primary.main};
-  transition: opacity 0.2s;
-
-  &:hover {
-    opacity: 0.85;
-  }
-`;
-
 /* ══ Breadcrumb ══ */
 const BreadcrumbBar = styled.div`
   padding: 0 300px;
@@ -159,16 +78,16 @@ const CrumbSep = styled.span`
 /* ══ Main Content ══ */
 const ContentArea = styled.main`
   flex: 1;
-  padding: 20px 300px 60px;
+  /* padding: 20px 300px 60px; */
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   gap: 24px;
   box-sizing: border-box;
 `;
 
 const MainSection = styled.div`
-  flex: 1;
-  min-width: 0;
+  width: 984px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -271,25 +190,6 @@ const PostDetailPage = () => {
 
   return (
     <Page>
-      <Header>
-        <LogoArea onClick={() => navigate("/")}>
-          <LogoSign src={logoSignImg} alt="이음 로고" />
-          <LogoText>이음</LogoText>
-        </LogoArea>
-
-        <Nav>
-          <NavItem>학습</NavItem>
-          <NavItem>시험</NavItem>
-          <NavItem>커뮤니티</NavItem>
-          <NavItem>고객지원</NavItem>
-        </Nav>
-
-        <HeaderButtons>
-          <HeaderBtn variant="outline">마이페이지</HeaderBtn>
-          <HeaderBtn variant="filled">로그아웃</HeaderBtn>
-        </HeaderButtons>
-      </Header>
-
       <BreadcrumbBar>
         <Crumb>홈</Crumb>
         <CrumbSep>›</CrumbSep>
