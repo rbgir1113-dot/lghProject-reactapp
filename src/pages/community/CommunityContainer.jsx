@@ -8,6 +8,7 @@ const users = [
   { userId: 2, userName: "장보고" },
 ];
 
+// 커뮤니티 가장 메인 영역
 const CommunityContainer = () => {
   return (
     <>
@@ -18,12 +19,13 @@ const CommunityContainer = () => {
           <ContentArea>
             {/* 좌측 메인 */}
             {/* 해당 부분이 아울렛으로 되어야 함 */}
+            {/* 자식: 메인 영역, 실시간 채팅방 모음 영역 */}
             <Outlet />
 
             {/* 우측 사이드 바 정의 */}
+            {/* 활동중 멤버, 공지사항, 사이드 채팅바 */}
             <MainRightSide />
           </ContentArea>
-
         </Page>
       </div>
       <div>

@@ -3,6 +3,18 @@
 
 import theme from "../../styles/theme";
 
+// 외곽선 내부 사이즈
+const borderWidth = 2;
+
+// 좌우 패딩 전체
+const sidePadding = 20;
+
+// 원하는 내부 패딩
+const innerPadding = 8;
+
+// 계산된 외부 패딩
+const outerPadding = sidePadding - (borderWidth + innerPadding);
+
 export const FONT_FAMILY = "'pretendard', sans-serif";
 
 // theme.FONT_SIZE에 없는 중간 크기
@@ -53,7 +65,13 @@ export const RADIUS = {
   card: "20px",
   button: "12px",
   input: "8px",
+  smallCard: "8px",
   sm: "10px",
+};
+
+// 외곽선 기본 스타일
+export const BORDER_STYLE = {
+  original: borderWidth + "px solid transparent",
 };
 
 // 그림자

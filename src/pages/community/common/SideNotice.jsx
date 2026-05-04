@@ -1,10 +1,18 @@
 import styled from "styled-components";
 import theme from "../../../styles/theme";
+import {
+  hoverStyle,
+  sideCardStyle,
+  sideComponentStyle,
+  sideHeaderStyle,
+} from "../communityStyle";
+import { h10Bold } from "../../../styles/common";
+import { BORDER_STYLE } from "../constants";
 
 const MOCK_NOTICES = [
   { id: 1, title: "2025 수어 챌린지 이벤트 안내", date: "3/8" },
-  { id: 2, title: "커뮤니티 이용 규칙 업데이트",   date: "3/8" },
-  { id: 3, title: "학습 인증 게시판 신규 오픈",     date: "3/8" },
+  { id: 2, title: "커뮤니티 이용 규칙 업데이트", date: "3/8" },
+  { id: 3, title: "학습 인증 게시판 신규 오픈", date: "3/8" },
 ];
 
 export default function SideNotice({ notices = MOCK_NOTICES }) {
@@ -28,30 +36,27 @@ export default function SideNotice({ notices = MOCK_NOTICES }) {
 
 const Card = styled.div`
   background: ${theme.PALETTE.white};
-  border-radius: 20px;
-  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  ${sideCardStyle}
   width: 100%;
   box-sizing: border-box;
 `;
 
 const Title = styled.p`
-  margin: 0;
-  font-size: ${theme.FONT_SIZE.h10};
-  font-weight: ${theme.FONT_WEIGHT.bold};
+  ${sideHeaderStyle}
+  ${h10Bold}
   color: ${theme.TEXT_COLOR.basic};
-  line-height: ${theme.FONT_LINE.h10};
 `;
 
 const NoticeList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
 `;
 
+// 각각의 것들
 const NoticeItem = styled.div`
   display: flex;
   align-items: center;
@@ -61,6 +66,9 @@ const NoticeItem = styled.div`
   border-radius: 8px;
   width: 100%;
   box-sizing: border-box;
+  border: ${BORDER_STYLE.original};
+  ${sideComponentStyle}
+  ${hoverStyle}
 `;
 
 const ItemLeft = styled.div`

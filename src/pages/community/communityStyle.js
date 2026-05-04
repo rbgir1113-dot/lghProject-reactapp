@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import theme from "../../styles/theme";
 import { h11Bold, h9Bold } from "../../styles/common";
+import { RADIUS } from "./constants";
 
 // 커뮤니티 좌측 (9개 그리드) 영역 너비
 export const communityWidthStyle = css`
@@ -18,20 +19,25 @@ export const communityBorderRadius = css`
 
 // 커뮤니티 에서 좌측 9개, 우측 3 개로 나누는 과정을 위한 Page
 /* ══ Page ══ */
+// 가장 상위 메인
 export const Page = styled.div`
   background: ${theme.GRAYSCALE[10]};
+  min-width: 1920px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: start;
+  align-items: center;
 `;
 
 /* ══ Content Area ══ */
 // 해당 영역은 좌측에는 메인, 우측에는 사이드 레이아웃이 있는 구조
 export const ContentArea = styled.main`
+  width: 1320px;
   flex: 1;
-  padding: 24px 300px 60px;
+  /* padding: 24px 300px 60px; */
   display: flex;
-  align-items: flex-start;
+  align-items: start;
   gap: 24px;
   box-sizing: border-box;
 `;
@@ -167,7 +173,6 @@ export const textFieldStyle = css`
   }
 `;
 
-
 // 버튼 스타일 컴포넌트
 export const ActionBtn = styled.button`
   ${h11Bold}
@@ -224,4 +229,28 @@ export const CategoryPill = styled.button`
     color: ${({ $active }) =>
       $active ? theme.PALETTE.white : theme.PALETTE.primary.main};
   }
+`;
+
+// 메인 사이드 에서 공지사항 및 유저 프로필 공통 속성
+export const sideComponentStyle = css`
+  padding: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: ${RADIUS.smallCard};
+`;
+
+// 제목 등 스타일
+export const sideHeaderStyle = css`
+  padding-right: 10px;
+  padding-left: 10px;
+`;
+
+// 사이드 카드 속성
+export const sideCardStyle = css`
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  gap: 16px;
+  border-radius: ${RADIUS.card};
 `;

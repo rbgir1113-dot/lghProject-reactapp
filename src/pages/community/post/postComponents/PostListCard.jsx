@@ -3,6 +3,7 @@ import theme from "../../../../styles/theme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faEye, faHeart } from "@fortawesome/free-solid-svg-icons";
 import {
+  flexBetweenRow,
   h11Medium,
   h11Regular,
   h12Bold,
@@ -13,9 +14,11 @@ import {
 import {
   communityBorderRadius,
   communityWidthStyle,
+  flexBetweenTopRow,
   FlexRow,
   hoverStyle,
 } from "../../communityStyle";
+import { BORDER_STYLE } from "../../constants";
 
 // 게시글 카드 컴포넌트 카드 스타일
 const Card = styled.div`
@@ -26,8 +29,14 @@ const Card = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  border: 2px solid transparent;
+  border: ${BORDER_STYLE.original};
   ${hoverStyle}
+`;
+
+// 태그와 시간 row 로 묶는 스타일 정의
+const TagAndTimeRow = styled.span`
+  ${flexBetweenRow}
+  width: 100%;
 `;
 
 const Tag = styled.span`
@@ -46,7 +55,14 @@ const TimeText = styled.p`
   white-space: nowrap;
 `;
 
-// 제목과 글 내용
+// 제목과 글 내용 묶는 row
+const ContentAndTitleRow = styled.div`
+  ${flexBetweenTopRow}
+  margin-top: 16px;
+  gap: 28px;
+`;
+
+// 글 내용
 const ContentArea = styled.div`
   display: flex;
   flex-direction: column;
@@ -61,7 +77,6 @@ const Title = styled.p`
   word-break: keep-all;
 `;
 
-// 이걸 레귤러 로 할 까 대략적인 생각
 // 내용
 const Description = styled.p`
   ${h8Medium}
@@ -88,6 +103,18 @@ const Thumbnail = styled.div`
   }
 `;
 
+// 작성자 정보 및 게시글 조회수 정보 meta를 묶는 row
+const PostMetaRow = styled.div`
+  ${flexBetweenRow}
+  margin-top: 36px;
+`;
+
+const AvatarAndAuthorRow = styled.div`
+  ${flexBetweenRow}
+  gap: 8px;
+`;
+
+// 작성자 프로필 원형
 const Avatar = styled.img`
   width: 20px;
   height: 20px;
@@ -95,10 +122,17 @@ const Avatar = styled.img`
   object-fit: cover;
 `;
 
+// 작성자 이름 스타일
 const AuthorName = styled.span`
   ${h9Bold}
   color: ${theme.TEXT_COLOR.basic};
   white-space: nowrap;
+`;
+
+// 상태를 묶어 줄 row
+const PostStateRow = styled.div`
+  ${flexBetweenRow}
+  gap: 12px;
 `;
 
 const StatItem = styled.div`
@@ -131,42 +165,55 @@ const PostListCard = ({
   postReadCount = 887,
 }) => {
   return (
+    // 포스트 카드 영역
     <Card>
-      <FlexRow justifyContent="space-between">
+      {/* 태그 및 작성 시각 */}
+      <TagAndTimeRow>
         <Tag>{postTag}</Tag>
         <TimeText>{postCreateAt}</TimeText>
-      </FlexRow>
+      </TagAndTimeRow>
 
-      <FlexRow gap="28px" marginTop="16px">
+      {/* 게시글 컨텐츠 (제목, 내용) 및 썸네일 row */}
+      {/* <ContentAndTitleRow gap="28px" marginTop="16px"> */}
+      <ContentAndTitleRow>
+        {/* 게시글 제목 및 내용 */}
         <ContentArea>
           <Title>{postTitle}</Title>
           <Description>{postContent}</Description>
         </ContentArea>
+        {/* 게시글 썸네일 */}
         <Thumbnail>
           {postThumbnail && <img src={postThumbnail} alt="게시글 썸네일" />}
         </Thumbnail>
-      </FlexRow>
+      </ContentAndTitleRow>
 
-      <FlexRow justifyContent="space-between" marginTop="36px">
-        <FlexRow gap="8px">
+      {/* 작성자 및 좋아요, 조회수, 댓글 수 나타내기 */}
+      <PostMetaRow>
+        {/* 작성자 프로필 이미지 및 이름 */}
+        <AvatarAndAuthorRow>
           {authorAvatar && <Avatar src={authorAvatar} alt={userNickname} />}
           <AuthorName>{userNickname}</AuthorName>
-        </FlexRow>
-        <FlexRow gap="12px">
+        </AvatarAndAuthorRow>
+
+        {/* 좋아요, 조회수, 댓글 수 row */}
+        <PostStateRow>
+          {/* 좋아요 */}
           <StatItem>
             <FontAwesomeIcon icon={faHeart} />
             <span>{postLikeCount}</span>
           </StatItem>
+          {/* 댓글수 */}
           <StatItem>
             <FontAwesomeIcon icon={faComment} />
             <span>{comments}</span>
           </StatItem>
+          {/* 조회수 */}
           <StatItem>
             <FontAwesomeIcon icon={faEye} />
             <span>{postReadCount}</span>
           </StatItem>
-        </FlexRow>
-      </FlexRow>
+        </PostStateRow>
+      </PostMetaRow>
     </Card>
   );
 };

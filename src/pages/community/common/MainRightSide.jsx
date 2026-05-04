@@ -94,6 +94,7 @@ const MainRightSide = () => {
         )}
 
         {/* 플로팅 버튼 — 사이드/팝업이 열려있으면 숨김 */}
+        {/* 해당 플로팅 버튼은 사이드 채팅창 띄우고 줄이는데 목적 */}
         {view === null && <FloatingChatButton onClick={handleOpen} />}
       </ColumnBlock>
 

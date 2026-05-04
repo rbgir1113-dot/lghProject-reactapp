@@ -8,12 +8,13 @@ import {
 } from "../../communityStyle";
 import { flexBetweenRow, flexCenterColumn } from "../../../../styles/common";
 import { H7Medium, H10Regular } from "../../communityTextStyle";
+import { BORDER_STYLE } from "../../constants";
 
 const Card = styled.div`
   ${flexCenterColumn}
   ${communitySideWidth}
   ${communityBorderRadius}
-  border: 2px solid transparent;
+  border: ${BORDER_STYLE.original};
   overflow: hidden;
   ${hoverStyle}
 `;
@@ -99,6 +100,7 @@ const ParticipantCount = styled.span`
   color: ${theme.PALETTE.primary.main};
 `;
 
+// 작은 버튼
 const JoinButton = styled.button`
   background: ${theme.PALETTE.primary.extraLight};
   color: ${theme.PALETTE.primary.main};

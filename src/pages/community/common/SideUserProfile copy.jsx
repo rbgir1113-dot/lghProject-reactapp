@@ -1,5 +1,14 @@
 import styled from "styled-components";
 import theme from "../../../styles/theme";
+import {
+  hoverStyle,
+  sideCardStyle,
+  sideComponentStyle,
+  sideHeaderStyle,
+} from "../communityStyle";
+import { BORDER_STYLE, RADIUS } from "../constants";
+import { useNavigate } from "react-router-dom";
+import { h10Bold } from "../../../styles/common";
 
 const FIGMA_AVATAR =
   "https://www.figma.com/api/mcp/asset/30837f06-8619-4116-9d6a-fa29c45a9b36";
@@ -36,12 +45,17 @@ const MOCK_MEMBERS = [
 ];
 
 export default function SideUserProfile({ members = MOCK_MEMBERS }) {
+  const navigate = useNavigate();
   return (
     <Card>
       <Title>지금 활동 중인 멤버</Title>
       <MemberList>
         {members.map((member) => (
-          <MemberItem key={member.id}>
+          // 각 프로필 타일 (클릭 하면 프로필로 이동하게 하기)
+          <MemberItem
+            key={member.id}
+            onClick={() => navigate(`/community/profile/${member.id}`)}
+          >
             <ProfileGroup>
               <AvatarWrapper>
                 <Avatar src={member.avatarUrl} alt={member.name} />
@@ -62,35 +76,35 @@ export default function SideUserProfile({ members = MOCK_MEMBERS }) {
 
 const Card = styled.div`
   background: ${theme.PALETTE.white};
-  border-radius: 20px;
-  padding: 16px 20px 20px;
+  ${sideCardStyle}
   display: flex;
   flex-direction: column;
-  gap: 16px;
   width: 100%;
   box-sizing: border-box;
 `;
 
 const Title = styled.p`
-  margin: 0;
-  font-size: ${theme.FONT_SIZE.h10};
-  font-weight: ${theme.FONT_WEIGHT.bold};
+  ${sideHeaderStyle}
   color: ${theme.TEXT_COLOR.basic};
-  line-height: ${theme.FONT_LINE.h10};
+  ${h10Bold}
 `;
 
 const MemberList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0px;
   width: 100%;
 `;
 
+// 멤버 각 요소
 const MemberItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  border: ${BORDER_STYLE.original};
+  ${sideComponentStyle}
+  ${hoverStyle}
 `;
 
 const ProfileGroup = styled.div`
