@@ -10,6 +10,12 @@ import {
   H12Bold,
   H12Regular,
 } from "../communityTextStyle";
+import {
+  flexBetweenRow,
+  flexCenterColumn,
+  flexCenterRow,
+  h12Regular,
+} from "../../../styles/common";
 
 // Figma asset URLs (expires in 7 days)
 const assets = {
@@ -173,16 +179,15 @@ const ORANGE_DARK = "#92400e";
 const PageBg = styled.div`
   background: ${colors.bgPopupOverlay};
   min-height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  ${flexCenterRow}
   padding: 73px 0 40px;
 `;
 
 const Popup = styled.div`
   width: 872px;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+  ${flexCenterColumn}
 `;
 
 // ─── Header ────────────────────────────────────────────────────────────────────
@@ -194,21 +199,18 @@ const Header = styled.div`
     ${colors.primary} 100%
   );
   border-radius: ${radius.card} ${radius.card} 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
+  ${flexBetweenRow}
   padding: 12px;
 `;
 
 const HeaderLeft = styled.div`
-  display: flex;
-  align-items: center;
+  ${flexCenterRow}
   gap: 36px;
 `;
 
 const ProfileArea = styled.div`
-  display: flex;
-  align-items: center;
+  ${flexCenterRow}
   gap: 12px;
 `;
 
@@ -275,8 +277,7 @@ const TodayMsgRow = styled.div`
 const TodayMsgText = styled(H11Regular).attrs({ $color: colors.border })``;
 
 const HeaderRight = styled.div`
-  display: flex;
-  align-items: center;
+  ${flexCenterRow}
   gap: 6px;
 `;
 
@@ -287,8 +288,7 @@ const LeaveBtn = styled.button`
   height: 20px;
   width: 79px;
   cursor: pointer;
-  font-weight: ${fonts.weight.regular};
-  font-size: ${fonts.size.xs};
+  ${h12Regular}
   color: ${colors.textWhite};
   text-align: center;
   line-height: 1;
@@ -707,7 +707,6 @@ const Tag = styled.div`
   white-space: nowrap;
 `;
 
-
 /* 접근성 도구 섹션 — 라벨 + 토글 가로 배치 */
 const AccessRow = styled.div`
   display: flex;
@@ -738,7 +737,9 @@ const UserInfoSectionHeader = styled.div`
   width: 100%;
 `;
 
-const UserInfoSectionTitle = styled(H9Bold).attrs({ $color: colors.textMain })``;
+const UserInfoSectionTitle = styled(H9Bold).attrs({
+  $color: colors.textMain,
+})``;
 
 const UserBigAvatarBox = styled.div`
   width: 64px;
@@ -803,30 +804,39 @@ const PopupChatScreen = ({ onMinimize, onClose, onLeave }) => {
 
   return (
     <PageBg>
+      {/* 헤더와 몸체 column 방향으로 감싸는거 */}
       <Popup>
         {/* ── Header ── */}
         <Header>
           <HeaderLeft>
+            {/* 왼쪽 채팅방 프로필 영역 */}
+            {/* 방 이름 및 참여 인원수 */}
             <ProfileArea>
+              {/* 프로필 */}
               <RoomProfileBox>
                 <img src={assets.roomProfile} alt="채팅방 프로필" />
               </RoomProfileBox>
+              {/* 방 설명 */}
               <RoomInfo>
                 <RoomTitle>학습 일상 대화방</RoomTitle>
                 <RoomSubText>00명 참여 중</RoomSubText>
               </RoomInfo>
             </ProfileArea>
+            {/* 라이브 상태 및 오늘 발생한 메세지 갯수 */}
             <MessageStatus>
+              {/* 상태, (라이브 등) */}
               <LiveBadge>
                 <LiveIcon src={assets.liveVector} alt="" />
                 <LiveText>LIVE</LiveText>
               </LiveBadge>
+              {/* 오늘 메세지 갯수 */}
               <TodayMsgRow>
                 <img src={assets.downloadIcon} alt="" />
                 <TodayMsgText>오늘 00개 메시지</TodayMsgText>
               </TodayMsgRow>
             </MessageStatus>
           </HeaderLeft>
+          {/* 나가기, 최소화 닫기 버튼 모음 */}
           <HeaderRight>
             <LeaveBtn onClick={onLeave}>채팅방 나가기</LeaveBtn>
             <MinimizeBtn onClick={onMinimize}>
@@ -957,15 +967,21 @@ const PopupChatScreen = ({ onMinimize, onClose, onLeave }) => {
                 </UserInfoTopSection>
                 <PanelSection>
                   <SectionLabel>유저 프로필 이동</SectionLabel>
-                  <ActionDescText>해당 유저의 프로필로 이동합니다.</ActionDescText>
-                  <OutlineButton borderColor={colors.live} textColor={colors.live}>
+                  <ActionDescText>
+                    해당 유저의 프로필로 이동합니다.
+                  </ActionDescText>
+                  <OutlineButton
+                    borderColor={colors.live}
+                    textColor={colors.live}
+                  >
                     유저 프로필로 이동
                   </OutlineButton>
                 </PanelSection>
                 <PanelSection>
                   <SectionLabel>채팅방 프로필로 되돌아가기</SectionLabel>
                   <ActionDescText>
-                    해당 유저 정보 열람을 종료 후 다시 채팅방 프로필 내용으로 돌아갑니다
+                    해당 유저 정보 열람을 종료 후 다시 채팅방 프로필 내용으로
+                    돌아갑니다
                   </ActionDescText>
                   <OutlineButton
                     borderColor={colors.danger}
@@ -979,13 +995,17 @@ const PopupChatScreen = ({ onMinimize, onClose, onLeave }) => {
                   <ReportCard>
                     <ReportCardTitle>⚠️ 신고 및 차단</ReportCardTitle>
                     <ReportCardDesc>
-                      부적절한 활동이 확인되면 신고해 주세요. 운영팀이 검토합니다.
+                      부적절한 활동이 확인되면 신고해 주세요. 운영팀이
+                      검토합니다.
                     </ReportCardDesc>
                   </ReportCard>
                   <OutlineButton borderColor={ORANGE} textColor={ORANGE}>
                     이 유저 신고하기
                   </OutlineButton>
-                  <OutlineButton borderColor={colors.border} textColor={colors.textSub}>
+                  <OutlineButton
+                    borderColor={colors.border}
+                    textColor={colors.textSub}
+                  >
                     이 유저 차단하기
                   </OutlineButton>
                 </PanelSection>
@@ -1014,9 +1034,15 @@ const PopupChatScreen = ({ onMinimize, onClose, onLeave }) => {
                 <PanelSection>
                   <SectionLabel>채팅방 소개</SectionLabel>
                   <IntroText>
-                    <H11Regular $color={colors.textMain}>수어로 일상 대화를 나누는</H11Regular>
-                    <H11Regular $color={colors.textMain}>공간이에요. 초보자도 환영!</H11Regular>
-                    <H11Regular $color={colors.textMain}>서로 격려하며 함께 배워요 🌱</H11Regular>
+                    <H11Regular $color={colors.textMain}>
+                      수어로 일상 대화를 나누는
+                    </H11Regular>
+                    <H11Regular $color={colors.textMain}>
+                      공간이에요. 초보자도 환영!
+                    </H11Regular>
+                    <H11Regular $color={colors.textMain}>
+                      서로 격려하며 함께 배워요 🌱
+                    </H11Regular>
                   </IntroText>
                 </PanelSection>
 
@@ -1073,9 +1099,15 @@ const PopupChatScreen = ({ onMinimize, onClose, onLeave }) => {
                 <PanelSection $gap="8px" $last>
                   <SectionLabel>채팅방 신고</SectionLabel>
                   <IntroText>
-                    <H11Regular $color={colors.textMain}>만약 해당 채팅방에서 부적절한 행위</H11Regular>
-                    <H11Regular $color={colors.textMain}>혹은 대화가 발생한다면 아래의</H11Regular>
-                    <H11Regular $color={colors.textMain}>신고하기 버튼으로 신고 가능합니다.</H11Regular>
+                    <H11Regular $color={colors.textMain}>
+                      만약 해당 채팅방에서 부적절한 행위
+                    </H11Regular>
+                    <H11Regular $color={colors.textMain}>
+                      혹은 대화가 발생한다면 아래의
+                    </H11Regular>
+                    <H11Regular $color={colors.textMain}>
+                      신고하기 버튼으로 신고 가능합니다.
+                    </H11Regular>
                   </IntroText>
                   <OutlineButton
                     borderColor={colors.danger}

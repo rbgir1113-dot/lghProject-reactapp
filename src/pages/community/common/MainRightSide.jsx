@@ -18,10 +18,10 @@ const PopupOverlay = styled.div`
 `;
 
 const VIEW = {
-  LIST:         "list",
-  REQUEST:      "request",
-  ROOM:         "room",
-  POPUP:        "popup",
+  LIST: "list",
+  REQUEST: "request",
+  ROOM: "room",
+  POPUP: "popup",
   POPUP_SELECT: "popupSelect",
 };
 
@@ -30,27 +30,34 @@ const MainRightSide = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
 
   // 사이드 채팅 핸들러
-  const handleOpen         = () => setView(VIEW.LIST);
-  const handleClose        = () => setView(null);
-  const handleExpand       = () => setView(VIEW.POPUP);
-  const handleTabChange    = (tab) => setView(tab === "request" ? VIEW.REQUEST : VIEW.LIST);
-  const handleRoomClick    = (room) => { setSelectedRoom(room); setView(VIEW.ROOM); };
+  const handleOpen = () => setView(VIEW.LIST);
+  const handleClose = () => setView(null);
+  const handleExpand = () => setView(VIEW.POPUP);
+  const handleTabChange = (tab) =>
+    setView(tab === "request" ? VIEW.REQUEST : VIEW.LIST);
+  const handleRoomClick = (room) => {
+    setSelectedRoom(room);
+    setView(VIEW.ROOM);
+  };
   const handleMinimizeRoom = () => setView(VIEW.LIST);
-  const handleViewAll      = () => setView(VIEW.LIST);
+  const handleViewAll = () => setView(VIEW.LIST);
 
   // 팝업 채팅 핸들러
-  const handlePopupMinimize      = () => setView(VIEW.LIST);
-  const handlePopupClose         = () => setView(null);
-  const handlePopupLeave         = () => setView(VIEW.POPUP_SELECT);
+  const handlePopupMinimize = () => setView(VIEW.LIST);
+  const handlePopupClose = () => setView(null);
+  const handlePopupLeave = () => setView(VIEW.POPUP_SELECT);
 
   // 채팅방 선택 팝업 핸들러
-  const handleSelectMinimize  = () => setView(VIEW.LIST);
-  const handleSelectClose     = () => setView(null);
-  const handleSelectRoomClick = (room) => { setSelectedRoom(room); setView(VIEW.POPUP); };
+  const handleSelectMinimize = () => setView(VIEW.LIST);
+  const handleSelectClose = () => setView(null);
+  const handleSelectRoomClick = (room) => {
+    setSelectedRoom(room);
+    setView(VIEW.POPUP);
+  };
 
   const sharedProps = {
-    onClose:     handleClose,
-    onExpand:    handleExpand,
+    onClose: handleClose,
+    onExpand: handleExpand,
     onTabChange: handleTabChange,
   };
 
