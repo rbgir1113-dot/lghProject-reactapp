@@ -163,7 +163,7 @@ const leftAreaWidth = css`
   width: 848px;
 `;
 
-/* ── 텍스트 입력 필드 ── */ 
+/* ── 텍스트 입력 필드 ── */
 const InputField = styled.input`
   min-width: 0;
   height: 49px;
