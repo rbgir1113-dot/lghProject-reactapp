@@ -89,15 +89,14 @@ export const AttendNotice = styled.div`
   .exp,
   .badge{
     height: 132px;
-    background: #fff;
     border: 1.5px solid #e6e6e6;
     border-radius: 20px;
     box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    padding-left: 15%;
 
     .noticeIcon{
       margin: 0 0 10px;

@@ -116,6 +116,13 @@ const StudyAttendanceComponent = () => {
                     {/* weeks */}
                     <HeadsUp>
                         이번주
+                        <span>월</span>
+                        <span>화</span>
+                        <span>수</span>
+                        <span>목</span>
+                        <span>금</span>
+                        <span>토</span>
+                        <span>일</span>
                     </HeadsUp>
 
                     {/* 출석보상 */}
