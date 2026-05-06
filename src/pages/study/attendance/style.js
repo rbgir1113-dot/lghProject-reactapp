@@ -42,36 +42,35 @@ export const AttendTitle = styled.div`
     gap: 8px;
 
     .checkDesc1{
-      margin: 0;
-      color: #1a1a1a;
-      font-size: 36px;
-      font-weight: 900;
+      color: ${textColor("black")};
+      font-size: ${fontSize("h6")};
+      font-weight: ${fontWeight("bold")};
     }
     .checkDesc2{
-      color: #666;
-      font-size: 16px;
-      font-weight: 600;
+      color: #a6a6a6;
+      font-size: ${fontSize("h9")};
+      font-weight: ${fontWeight("light")};
     }
   }
 
   .checkComplete{
-    min-width: 260px;
-    padding: 18px 24px;
+    width: 194px;
+    height: 58px;
+    padding-top: 1%;
     border-radius: 18px;
-    background: #fff;
-    border: 1.5px solid #e6e6e6;
+    border: 2px solid #129D1B;
     box-sizing: border-box;
+    text-align: center;
 
     .completeDesc1{
-      margin: 0 0 8px;
-      color: #1a1a1a;
-      font-size: 18px;
-      font-weight: 900;
+      color: #129D1B;
+      font-size: ${fontSize("h10")};
+      font-weight: ${fontWeight("bold")};
     }
     .completeDesc2{
-      color: #4359fc;
-      font-size: 14px;
-      font-weight: 800;
+      color: #AAE5AE;
+      font-size: ${fontSize("h11")};
+      font-weight: ${fontWeight("regular")};
     }
   }
 `;

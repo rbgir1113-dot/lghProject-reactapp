@@ -36,7 +36,7 @@ const StudyAttendanceComponent = () => {
                 </div>
 
                 <div className='checkComplete'>
-                    <p className='completeDesc1'>✅오늘 출석 완료!</p>
+                    <p className='completeDesc1'>✅ 오늘 출석 완료!</p>
                     <span className='completeDesc2'>+30 XP 획득했어요!</span>
                 </div>
             </AttendTitle>
