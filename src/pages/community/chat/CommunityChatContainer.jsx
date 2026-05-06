@@ -1,15 +1,15 @@
-import React from 'react';
-import CommunityChatComponent from './CommunityChatComponent';
-import { Outlet } from 'react-router-dom';
+import React from "react";
+import CommunityChatComponent from "./CommunityChatComponent";
+import { Outlet } from "react-router-dom";
 
 const CommunityChatContainer = () => {
-    return (
-        <div>
-            커뮤니티 컨테이너
-            <CommunityChatComponent />
-            <Outlet />
-        </div>
-    );
+  console.log("채팅방 영역 그려짐");
+  return (
+    <div>
+      <CommunityChatComponent />
+      <Outlet />
+    </div>
+  );
 };
 
 export default CommunityChatContainer;
