@@ -548,13 +548,13 @@ const EumMainContainer = () => {
           flexDirection: 'column', 
           alignItems: 'center', 
           paddingTop: '110px' ,
-          gap: '71px',
           }}>
           <span style={{
             fontSize : theme.FONT_SIZE.h5,
             fontWeight : theme.FONT_WEIGHT.bold,
             alignSelf: 'flex-start', 
-            paddingLeft: '370px'
+            paddingLeft: '370px',
+            marginBottom:'71px'
             }}>
               💎 커리큘럼
           </span>
@@ -562,6 +562,7 @@ const EumMainContainer = () => {
             display: 'flex',
             alignItems: 'flex-start',
             width: '670px',
+            marginBottom: '25px'
           }}>
             <div style={{
               display: 'flex',
@@ -581,7 +582,7 @@ const EumMainContainer = () => {
                 fontSize : theme.FONT_SIZE.h7,
                 fontWeight : theme.FONT_WEIGHT.regular,
                 fontLine : theme.FONT_LINE.h7
-              }}>
+                }}>
                 1
               </div>
               <span style={{
@@ -768,7 +769,103 @@ const EumMainContainer = () => {
               </span>
             </div>
           </div>
+          <div style={{
+            width : '1096px',
+            height: '355px',
+            borderRadius:'50px',
+            border:`solid 1px ${theme.PALETTE.primary.main}`,
+            paddingTop: '35px',
+            paddingLeft: '66px',
+            paddingBottom : '40px',
+            display :'flex',
+            flexDirection :'column',
 
+          }}>
+            <span style={{
+              fontSize : theme.FONT_SIZE.h7,
+              fontWeight : theme.FONT_WEIGHT.medium,
+              fontLine : theme.FONT_LINE.h7,
+              marginBottom: '14px'
+            }}>
+              이음 커리큘럼 소개
+            </span>
+            <span style={{
+              marginBottom:'10px',
+              fontSize : theme.FONT_SIZE.h4,
+              fontWeight: theme.FONT_WEIGHT.bold,
+              fontLine : theme.FONT_LINE.h4,
+              color : theme.TEXT_COLOR.primary
+              }}>
+                입문부터 자격증까지
+            </span>
+            <span style={{
+              marginBottom : '5px',
+              fontSize : theme.FONT_SIZE.h10,
+              fontWeight : theme.FONT_WEIGHT.regular,
+              fontLine : theme.FONT_LINE.h10,
+              color : theme.PALETTE.black
+              }}>
+                총 5단계 · 50강 · 평균 수료 기간 6개월
+            </span>
+            <div style={{
+              display: 'flex',
+              gap : '9px',
+              fontSize : theme.FONT_SIZE.h10,
+              fontWeight : theme.FONT_WEIGHT.medium,
+              fontLine : theme.FONT_LINE.h10,
+              color : theme.GRAYSCALE[7]
+              }}>
+              <span>#무료시작</span>
+              <span>#단계별학습</span>
+              <span>#라이브참여</span>
+              <span>#자격증</span>
+              <span>#커뮤니티</span>
+            </div>
+            <div style={{
+              display : 'flex',
+              gap : '20px',
+              alignSelf : 'center',
+              marginTop : 'auto'
+            }}>
+              <p style={{
+                width : '200px',
+                height : '60px',
+                borderRadius : '40px',
+                backgroundColor: theme.PALETTE.primary.main,
+                display : 'flex',
+                justifyContent : 'center',
+                textAlign : 'center'
+              }}>
+                <button style={{
+                  color : theme.PALETTE.white,
+                  fontSize : theme.FONT_SIZE.h8,
+                  fontWeight : theme.FONT_WEIGHT.bold,
+                  fontLine : theme.FONT_LINE.h8
+                  }}
+                  onClick={() => navigate('/study/experience')}>
+                  무료로 시작하기 →
+                </button>
+              </p>
+              <p style={{
+                width : '200px',
+                height : '60px',
+                borderRadius : '40px',
+                border : `solid 1px ${theme.PALETTE.primary.main}`,
+                display : 'flex',
+                justifyContent : 'center',
+                textAlign : 'center'
+              }}>
+                <button style={{
+                  color : theme.PALETTE.primary.main,
+                  fontSize : theme.FONT_SIZE.h8,
+                  fontWeight : theme.FONT_WEIGHT.medium,
+                  fontLine : theme.FONT_LINE.h8
+                  }}>
+                  커리큘럼 보기
+                </button>  
+              </p>              
+            </div>
+          </div>
 
         </div>
       </div>
