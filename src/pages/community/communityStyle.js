@@ -22,7 +22,7 @@ export const communityBorderRadius = css`
 // 가장 상위 메인
 export const Page = styled.div`
   background: ${theme.GRAYSCALE[10]};
-  min-width: 1920px;
+  /* min-width: 1920px; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
