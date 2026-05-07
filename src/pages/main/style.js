@@ -25,7 +25,7 @@ export const styles = {
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'flex-end',
-    marginTop: '223px',
+    marginTop: '20.65vh',
   },
 
   // 배너 헤드라인 텍스트 — theme 의존값은 컴포넌트에서 주입
@@ -34,7 +34,6 @@ export const styles = {
     fontWeight: theme.FONT_WEIGHT.bold,
     FONT_LINE: theme.FONT_LINE.h1,
     textAlign: 'center',
-    letterSpacing: '-0.02em',
   },
 
   // 배너 서브타이틀 wrapper
@@ -43,7 +42,7 @@ export const styles = {
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'flex-end',
-    marginTop: '36px',
+    marginTop: '3.33vh',
     
   },
 
@@ -54,9 +53,8 @@ export const styles = {
     color: theme.GRAYSCALE[7],
     FONT_LINE:theme.FONT_LINE.h7,
     textAlign: 'center',
-    letterSpacing: '-0.02em',
-    paddingTop:'36px',
-    paddingBottom:'64px'
+    paddingTop:'3.33vh',
+    paddingBottom:'5.93vh'
   },
 
   // CTA 버튼 wrapper
@@ -65,20 +63,19 @@ export const styles = {
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    marginTop: '36px',
-    marginBottom: '435px',
+    marginTop: '3.33vh',
+    marginBottom: '40.28vh',
   },
 
-  // CTA 버튼 — theme 의존값은 컴포넌트에서 주입
+  // CTA 버튼
   ctaButton: {
     fontSize: theme.FONT_SIZE.h7,  
     fontWeight: theme.FONT_WEIGHT.bold, 
     textAlign: 'center',
     padding: '20px 50px',
     borderRadius: '50px',
-    letterSpacing: '-0.02em',
-    height: '60px',
-    width: '250px',
+    height: '5.56vh',
+    width: '13.02vw',
     whiteSpace: 'nowrap',
     display: 'flex',
     justifyContent: 'center',
@@ -171,8 +168,8 @@ export const styles = {
     justifyContent: 'center',
     alignContent:'center',
     alignItems:'center',
-    marginTop: '36px',
-    marginBottom:'250px',
+    marginTop: '3.33vh',
+    marginBottom:'23.15vh',
   },
 
   startBtn : {
@@ -183,9 +180,8 @@ export const styles = {
     textAlign:'center',
     padding: '20px 50px',
     borderRadius : '50px',
-    letterSpacing: '-0.02em',
-    height:'60px',
-    width:'250px',
+    height:'5.56vh',
+    width:'13.02vw',
     whiteSpace: 'nowrap',
     display : 'flex',
     justifyContent: 'center',

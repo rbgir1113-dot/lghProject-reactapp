@@ -769,17 +769,18 @@ const EumMainContainer = () => {
               </span>
             </div>
           </div>
+
           <div style={{
             width : '1096px',
             height: '355px',
             borderRadius:'50px',
             border:`solid 1px ${theme.PALETTE.primary.main}`,
+            marginBottom : '150px',
             paddingTop: '35px',
             paddingLeft: '66px',
             paddingBottom : '40px',
             display :'flex',
             flexDirection :'column',
-
           }}>
             <span style={{
               fontSize : theme.FONT_SIZE.h7,
@@ -868,10 +869,153 @@ const EumMainContainer = () => {
           </div>
           <div style={{
             width : '100%',
-            height : '668px',
-            backgroundColor: styles.backGroundGray
-          }}>
+            height : '61.85vh',
+            backgroundColor: styles.backGroundGray,
+            display : 'flex',
+            flexDirection : 'column',
+            justifyContent : 'center',
+            textAlign : 'center',
+            paddingTop : '12.04vh',
+            }}>
+            <p style={{
+              display :'flex',
+              flexDirection : 'column',
+              marginBottom : '2.04vh'
+              }}>
+              <span style={{
+                fontSize : theme.FONT_SIZE.h3,
+                fontWeight : theme.FONT_WEIGHT.bold,
+                fontLine : theme.FONT_LINE.h3
+                }}>
+                이음에서 달라진 이야기들
+              </span>
+              <span style={{
+                fontSize : theme.FONT_SIZE.h9,
+                fontWeight : theme.FONT_WEIGHT.light,
+                fontLine : theme.FONT_LINE.h9,
+                color : styles.textGray,
+                marginTop : '2.04vh'
+              }}>
+                42,000명이 이음과 함께 수어를 배웠습니다.
+              </span>
+            </p>
+            <div style = {{
+              display : 'flex',
+              justifyContent : 'center',
+              gap : '1.25vw',
+              marginTop: '4.91vh'
+            }}>
+              {/* 첫번째 카드 */}
+              <p style={{
+                width : '22.08vw',
+                height : '24.07vh',
+                backgroundColor : theme.PALETTE.white,
+                borderRadius : '20px',
+                }}>
+                <div style={{
+                  textAlign : 'left',
+                  marginTop : '3.7vh',
+                  marginLeft : '2.08vw'
+                }}>
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                </div>
+                <span style = {{
+                  display: 'flex',
+                  fontSize : theme.FONT_SIZE.h9,
+                  fontWeight : theme.FONT_WEIGHT.regular,
+                  fontLine : theme.FONT_LINE.h9,
+                  textAlign : 'left',
+                  marginTop: '1.39vh',
+                  marginLeft : '2.08vw'
+                  }}>
+                  "농인 친구가 생겼을 때 <br />
+                  정말 소통하고 싶었는데, <br />
+                  이음 덕분에 이제 제법 대화할 수 있게 됐어요."
+                </span>
+                <p style={{
+                  display:'flex',
+                  alignItems:'center',
+                  width: '2.19vw',
+                  height: '3.98vh',
+                  flexDirection :'column',
+                  marginTop: '4.63vh',
+                  marginLeft : '2.08vw'
+                  }}>
+                  <img src="/assets/image/main/dummyUserImg1.png"/>
+                </p>
+              </p>
 
+              {/* 두번째 카드 */}
+              <p style={{
+                width : '22.08vw',
+                height : '24.07vh',
+                backgroundColor : theme.PALETTE.white,
+                borderRadius : '20px',
+                }}>
+                <div style={{
+                  textAlign : 'left',
+                  marginTop : '3.7vh',
+                  marginLeft : '2.08vw'
+                }}>
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                </div>
+                <span style = {{
+                  display: 'flex',
+                  fontSize : theme.FONT_SIZE.h9,
+                  fontWeight : theme.FONT_WEIGHT.regular,
+                  fontLine : theme.FONT_LINE.h9,
+                  textAlign : 'left',
+                  marginTop: '1.39vh',
+                  marginLeft : '2.08vw'
+                  }}>
+                  "수어 통역사 자격증을 준비하면서 <br />
+                  이음을 알게 됐어요. <br />
+                  한 번에 합격했습니다!"
+                </span>
+              </p>
+
+              {/* 세번째 카드 */}
+              <p style={{
+                width : '22.08vw',
+                height : '24.07vh',
+                backgroundColor : theme.PALETTE.white,
+                borderRadius : '20px',
+                }}>
+                <div style={{
+                  textAlign : 'left',
+                  marginTop : '3.7vh',
+                  marginLeft : '2.08vw'
+                }}>
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                  <img src="/assets/image/main/starIcon.svg" alt="star" />
+                </div>
+                <span style = {{
+                  display: 'flex',
+                  fontSize : theme.FONT_SIZE.h9,
+                  fontWeight : theme.FONT_WEIGHT.regular,
+                  fontLine : theme.FONT_LINE.h9,
+                  textAlign : 'left',
+                  marginTop: '1.39vh',
+                  marginLeft : '2.08vw'
+                  }}>
+                  "매일 퀴즈로 습관을 만들 수 있어서 좋아요. <br />
+                  수어가 즐거운 일상이 됐습니다."
+                </span>
+              </p>
+
+
+            </div>
           </div>
         </div>
       </div>
