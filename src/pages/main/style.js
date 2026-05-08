@@ -4,6 +4,9 @@ import EumMainContainer from "./EumMainContainer"
 const curriculumGray = "#E0E0EF"
 const backGroundGray = "#F7F7FB"
 const textGray = "#888888"
+const dailyGray = "#9090B0"
+const clickDailyGray = "#90909B"
+const dailyBorderGray = "#EFEFFA"
 
 export const styles = {
   
@@ -180,7 +183,7 @@ export const styles = {
     textAlign:'center',
     padding: '20px 50px',
     borderRadius : '50px',
-    height:'5.56vh',
+    height:'60px',
     width:'13.02vw',
     whiteSpace: 'nowrap',
     display : 'flex',
