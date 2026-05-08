@@ -3,7 +3,6 @@ import {
   Header,
   HeaderLeft,
   ProfileArea,
-  RoomProfileBox,
   RoomInfo,
   RoomTitle,
   RoomSubText,
@@ -18,9 +17,9 @@ import {
   MinimizeBtn,
   CloseBtn,
 } from "../ChatStyle";
+import { ThumbnailBox } from "../chatComponents/chatComponentStyle";
+import defaultProfileImg from "../../assets/chat/chat_default_profile.svg";
 
-const roomProfileUrl =
-  "https://www.figma.com/api/mcp/asset/4597fd24-1f77-4b23-a97f-9d0612d37539";
 const liveVectorUrl =
   "https://www.figma.com/api/mcp/asset/79378b34-81dd-4aef-bc8a-2e9814e941b7";
 const downloadIconUrl =
@@ -30,13 +29,15 @@ const minimizeVUrl =
 const closeVUrl =
   "https://www.figma.com/api/mcp/asset/633d41af-e1e1-462a-acec-b1534e4d49ad";
 
-const PopupChatHeader = ({ onLeave, onMinimize, onClose }) => (
+const PopupChatHeader = ({ profileUrl, onLeave, onMinimize, onClose }) => (
   <Header>
     <HeaderLeft>
       <ProfileArea>
-        <RoomProfileBox>
-          <img src={roomProfileUrl} alt="채팅방 프로필" />
-        </RoomProfileBox>
+        <ThumbnailBox
+          src={profileUrl || defaultProfileImg}
+          alt="채팅방 프로필"
+          onError={(e) => { e.target.src = defaultProfileImg; }}
+        />
         <RoomInfo>
           <RoomTitle>학습 일상 대화방</RoomTitle>
           <RoomSubText>00명 참여 중</RoomSubText>
