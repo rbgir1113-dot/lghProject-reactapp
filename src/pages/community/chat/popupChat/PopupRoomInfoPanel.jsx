@@ -36,7 +36,9 @@ const PopupRoomInfoPanel = ({ profileUrl, tags, onLeave }) => {
         <PopupChatRoomInfoThumbnail
           src={profileUrl || defaultProfileImg}
           alt="채팅방"
-          onError={(e) => { e.target.src = defaultProfileImg; }}
+          onError={(e) => {
+            e.target.src = defaultProfileImg;
+          }}
         />
         <RoomTitleCenter>
           <RoomTitleText>수어 일상 대화방</RoomTitleText>
