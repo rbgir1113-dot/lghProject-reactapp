@@ -5,7 +5,6 @@ import { AttendPopUpWrap } from './style';
 const StudyAttendancePopup = () => {
 
 
-
     return (
         <AttendPopUpWrap>
             <div className="attendance-modal">
@@ -28,10 +27,7 @@ const StudyAttendancePopup = () => {
                 <div className='get-badge'>획득뱃지</div>
                 <div className='point-badge'>4개</div>
                 </div>
-
-                <div>
                     
-                </div>
                 <div className='attendnotice'>14일 달성까지 7일 남았어요</div>
                 <div className='attendnoticebar'>--------------</div>
                 
@@ -42,3 +38,4 @@ const StudyAttendancePopup = () => {
 };
 
 export default StudyAttendancePopup;
+

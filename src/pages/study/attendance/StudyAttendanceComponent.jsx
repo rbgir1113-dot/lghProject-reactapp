@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import StudyAttendancePopup from './StudyAttendancePopup';
-import { AttendNotice, AttendReward, AttendTitle, AttendWrap, CalendarWrap, HeadsUp, SideWrap, StyledCalendar, StyledCalendarWrapper, StyledDate, StyledDot } from './style';
+import { AttendIS, AttendNotice, AttendReward, AttendTitle, AttendWrap, CalendarWrap, HeadsUp, SideWrap, StyledCalendar, StyledCalendarWrapper, StyledDate, StyledDot } from './style';
 import moment from 'moment';
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -110,6 +110,10 @@ const StudyAttendanceComponent = () => {
                     
                     {/*  Today 버튼 */}
                     <StyledDate onClick={handleTodayClick}>Today</StyledDate>
+                    <AttendIS>
+                        <span>출석</span>
+                        <span>미출석</span>
+                    </AttendIS>
                 </CalendarWrap>
 
                 <SideWrap>

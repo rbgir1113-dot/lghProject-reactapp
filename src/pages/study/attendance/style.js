@@ -142,7 +142,7 @@ export const StyledCalendarWrapper = styled.div`
 
   .react-calendar {
     width: 820px;
-    height: 540px;
+    height: 600px;
     border: 1px solid #C4C4C4;
     border-radius: 25px;
     padding: 5% 4%;
@@ -308,7 +308,7 @@ export const StyledCalendar = styled(Calendar)``;
 /* 오늘 버튼 스타일 */
 export const StyledDate = styled.div`
   position: absolute;
-  top: 75px; 
+  top: 50px; 
   right: 68px; 
   background-color: #7C97FE;
   color: white;
@@ -322,9 +322,22 @@ export const StyledDate = styled.div`
   z-index: 1; /* 버튼이 다른 요소 위에 나타나도록 설정 */
 `;
 
+export const AttendIS = styled.div`
+  top: 70px; 
+  left: 68px; 
+  color: black;
+  width: 90px;
+  line-height: 1.6rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  z-index: 1; /* 버튼이 다른 요소 위에 나타나도록 설정 */
+
+
+`;
+
 /* 특정 날짜에 점 표시 스타일 */
 export const StyledDot = styled.div`
-  background-color: #FF4949;
+  background-color: #4359FC;
   border-radius: 50%;
   width: 0.3rem;
   height: 0.3rem;
@@ -349,7 +362,7 @@ export const HeadsUp = styled.div`
   border: 1.5px solid #e6e6e6;
   border-radius: 20px;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 30px;
   height: 210px;
 `;
 
