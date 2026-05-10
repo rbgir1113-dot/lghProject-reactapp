@@ -56,6 +56,11 @@ export const ChatProvider = ({ children }) => {
     setView(VIEW.POPUP);
   }, []);
 
+  // 사이드 채팅 확대 → 현재 사이드 type에 따라 팝업 화면 분기
+  const expandFromSide = useCallback((sideType) => {
+    setView(sideType === TYPE.ROOM ? VIEW.POPUP : VIEW.POPUP_SELECT);
+  }, []);
+
   // 팝업에서 "나가기" → 채팅방 선택 화면
   const handleLeave = useCallback(() => {
     setView(VIEW.POPUP_SELECT);
@@ -90,6 +95,7 @@ export const ChatProvider = ({ children }) => {
         closeChat,
         closeSideChat,
         reopenChat,
+        expandFromSide,
         handleLeave,
         handleSelectRoom,
         handleSelectMinimize,

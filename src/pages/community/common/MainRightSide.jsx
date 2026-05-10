@@ -23,6 +23,7 @@ const MainRightSide = () => {
     isLoading,
     sideInitialType,
     reopenChat,
+    expandFromSide,
     minimizeChat,
     closeChat,
     closeSideChat,
@@ -53,7 +54,7 @@ const MainRightSide = () => {
         <SideChat
           initialType={sideInitialType}
           onClose={closeSideChat}
-          onExpand={reopenChat}
+          onExpand={expandFromSide}
         />
       )}
 

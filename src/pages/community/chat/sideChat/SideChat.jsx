@@ -39,7 +39,7 @@ const SideChat = ({ initialType = TYPE.LIST, onClose, onExpand }) => {
         type={type}
         chatPartnerName={selectedRoom?.name}
         onMinimize={type === TYPE.ROOM ? handleBack : onClose}
-        onExpand={onExpand}
+        onExpand={() => onExpand(type)}
         onClose={onClose}
       />
       {type === TYPE.LIST && (
