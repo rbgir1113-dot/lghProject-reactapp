@@ -47,9 +47,8 @@ export const ChatProvider = ({ children }) => {
     setView(null);
   }, []);
 
-  // 팝업 닫기(X) → 채팅 종료
+  // 팝업 닫기(X) → 팝업만 닫고 플로팅 버튼 표시 (activeChatRoom 유지)
   const closeChat = useCallback(() => {
-    setActiveChatRoom(null);
     setView(null);
   }, []);
 
