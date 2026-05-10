@@ -75,7 +75,7 @@ const MainRightSide = () => {
         <PopupOverlay>
           <PopupChatRoomSelect
             initialFilter={popupSelectInitialFilter}
-            onMinimize={handleSelectMinimize}
+            onMinimize={(filter) => handleSelectMinimize(filter)}
             onClose={handleSelectClose}
             onRoomSelect={handleSelectRoom}
           />

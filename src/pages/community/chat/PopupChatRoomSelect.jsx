@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SelectPageBg,
   SelectPopup,
@@ -67,33 +67,40 @@ const PopupChatRoomSelect = ({
   onMinimize,
   onClose,
   onRoomSelect,
-}) => (
-  <SelectPageBg>
-    <SelectPopup>
-      <SelectHeader>
-        <HeaderTitle>채팅방 선택</HeaderTitle>
-        <HeaderBtns>
-          <MinimizeBtn onClick={onMinimize}>
-            <img src={minimizeVUrl} alt="최소화" />
-          </MinimizeBtn>
-          <SelectCloseBtn onClick={onClose}>
-            <img src={closeVUrl} alt="닫기" />
-          </SelectCloseBtn>
-        </HeaderBtns>
-      </SelectHeader>
+}) => {
+  const [currentFilter, setCurrentFilter] = useState(
+    initialFilter ?? "라이브 채팅방",
+  );
 
-      <SelectBody>
-        <SelectRoomListPanel
-          liveRooms={LIVE_ROOMS}
-          followUsers={FOLLOW_USERS}
-          requestUsers={REQUEST_USERS}
-          initialFilter={initialFilter}
-          onRoomSelect={onRoomSelect}
-        />
-        <SelectOngoingPanel rooms={ONGOING_ROOMS} />
-      </SelectBody>
-    </SelectPopup>
-  </SelectPageBg>
-);
+  return (
+    <SelectPageBg>
+      <SelectPopup>
+        <SelectHeader>
+          <HeaderTitle>채팅방 선택</HeaderTitle>
+          <HeaderBtns>
+            <MinimizeBtn onClick={() => onMinimize(currentFilter)}>
+              <img src={minimizeVUrl} alt="최소화" />
+            </MinimizeBtn>
+            <SelectCloseBtn onClick={onClose}>
+              <img src={closeVUrl} alt="닫기" />
+            </SelectCloseBtn>
+          </HeaderBtns>
+        </SelectHeader>
+
+        <SelectBody>
+          <SelectRoomListPanel
+            liveRooms={LIVE_ROOMS}
+            followUsers={FOLLOW_USERS}
+            requestUsers={REQUEST_USERS}
+            initialFilter={initialFilter}
+            onFilterChange={setCurrentFilter}
+            onRoomSelect={onRoomSelect}
+          />
+          <SelectOngoingPanel rooms={ONGOING_ROOMS} />
+        </SelectBody>
+      </SelectPopup>
+    </SelectPageBg>
+  );
+};
 
 export default PopupChatRoomSelect;

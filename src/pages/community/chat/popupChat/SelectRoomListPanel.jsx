@@ -34,10 +34,16 @@ const SelectRoomListPanel = ({
   followUsers,
   requestUsers,
   initialFilter = "라이브 채팅방",
+  onFilterChange,
   onRoomSelect,
 }) => {
   const [activeRoom, setActiveRoom] = useState(liveRooms[0]?.id ?? null);
   const [activeFilter, setActiveFilter] = useState(initialFilter);
+
+  const handleFilterChange = (tab) => {
+    setActiveFilter(tab);
+    onFilterChange?.(tab);
+  };
 
   const currentUsers =
     activeFilter === "팔로우 한 유저" ? followUsers : requestUsers;
@@ -94,7 +100,7 @@ const SelectRoomListPanel = ({
           <FilterTab
             key={tab}
             $active={activeFilter === tab}
-            onClick={() => setActiveFilter(tab)}
+            onClick={() => handleFilterChange(tab)}
           >
             {tab}
           </FilterTab>

@@ -80,9 +80,9 @@ export const ChatProvider = ({ children }) => {
     setView(VIEW.POPUP);
   }, []);
 
-  // 채팅방 선택 화면 최소화 → 사이드 채팅 표시 (방 선택 화면 → TYPE.LIST)
-  const handleSelectMinimize = useCallback(() => {
-    setSideInitialType(TYPE.LIST);
+  // 채팅방 선택 화면 최소화 → 사이드 채팅 표시 (현재 팝업 탭에 따라 타입 결정)
+  const handleSelectMinimize = useCallback((filter) => {
+    setSideInitialType(filter === "요청" ? TYPE.REQUEST : TYPE.LIST);
     setView(VIEW.SIDE);
   }, []);
 
