@@ -132,20 +132,20 @@ export const StyledCalendarWrapper = styled.div`
   /* margin: auto; */
   // margin-top: 50px;
 
-  width: min(1200px, calc(100% - 48px));
+  width: min(1250px, calc(100% - 48px));
   margin: 0 auto;
   display: grid;
   grid-template-columns: 820px 330px;
-  gap: 20px;
+  gap: 30px;
   align-items: start;
   
 
   .react-calendar {
     width: 820px;
     height: 600px;
-    border: 1px solid #C4C4C4;
+    border: 1px solid #e6e6e6;
     border-radius: 25px;
-    padding: 5% 4%;
+    padding: 7% 4%;
   }
 
   /* 전체 클릭 비활성화 */
@@ -163,6 +163,7 @@ export const StyledCalendarWrapper = styled.div`
 
   .react-calendar__navigation {
     border-bottom: 1px solid #DFDFDF;
+    padding-bottom: 2%;
   }
 
   /* 2024.09 텍스트 색상 설정 */
@@ -297,7 +298,7 @@ export const StyledCalendarWrapper = styled.div`
 // CalendarWrapper
 export const CalendarWrap = styled.div`
   position: relative;
-  padding: 10px 10px;
+  padding: 0 auto;
   background: #fff;
   border-radius: 20px;
   box-sizing: border-box;
@@ -308,8 +309,8 @@ export const StyledCalendar = styled(Calendar)``;
 /* 오늘 버튼 스타일 */
 export const StyledDate = styled.div`
   position: absolute;
-  top: 50px; 
-  right: 68px; 
+  top: 60px; 
+  right: 58px; 
   background-color: #7C97FE;
   color: white;
   width: 90px;
@@ -322,15 +323,59 @@ export const StyledDate = styled.div`
   z-index: 1; /* 버튼이 다른 요소 위에 나타나도록 설정 */
 `;
 
+// 출석 미출석
 export const AttendIS = styled.div`
-  top: 70px; 
-  left: 68px; 
-  color: black;
-  width: 90px;
-  line-height: 1.6rem;
-  font-size: 0.8rem;
-  font-weight: 500;
-  z-index: 1; /* 버튼이 다른 요소 위에 나타나도록 설정 */
+  position: absolute;
+  left: 90px;
+  bottom: 58px;
+
+  display: flex;
+  align-items: center;
+  gap: 34px;
+
+  .in{
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+
+    padding-left: 18px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #666;
+  }
+
+  .out{
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+
+    padding-left: 18px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #c9c9c9;
+  }
+
+  
+  .in::before,
+  .out::before {
+    content: "";
+    position: absolute;
+    left: 0;
+
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+
+  .in::before {
+    background: #4359fc;
+  }
 
 
 `;
@@ -355,38 +400,416 @@ export const SideWrap = styled.div`
 
 // 이번주
 export const HeadsUp = styled.div`
-  display: flex;
-  
-  gap: 20px;
+  width: 356px;
+  height: 225px;
+  padding: 30px 26px;
+  box-sizing: border-box;
+
   background: #fff;
   border: 1.5px solid #e6e6e6;
-  border-radius: 20px;
-  box-sizing: border-box;
-  padding: 30px;
-  height: 210px;
+  border-radius: 22px;
+
+  .weekTitle{
+    margin: 0 0 18px;
+    color: #1a1a1a;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .weekList{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-bottom: 32px;
+
+    .weekItem{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .day{
+      margin: 0;
+      color: #aaa;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .todayText{
+      color: #4359fc;
+    }
+
+    .circle{
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #eeeeee;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+
+      .circle.check{
+        background: #4359fc;
+        font-size: 18px;
+      }
+
+      .circle.today{
+        background: #4359fc;
+        font-size: 11px;
+      }
+
+      .circle.empty{
+        background: #eeeeee;
+      }
+    }
+
+  }
+
+  .weekText{
+    margin: 0 0 14px;
+    color: #aaa;
+    font-size: 14px;
+
+    .weekText span{
+      color: #999;
+    }
+
+  }
+
+  .progressBar{
+    width: 100%;
+    height: 8px;
+    border-radius: 999px;
+    background: #f0f0f0;
+    overflow: hidden;
+
+    .progressFill{
+      width: 43%;
+      height: 100%;
+      border-radius: 999px;
+      background: #4359fc;
+
+    }
+  }
+
 `;
 
 // 출석보상
 export const AttendReward = styled.div`
-  display: grid;
-  gap: 20px;
+  width: 356px;
+  height: 355px;
+  padding: 28px 30px;
+  box-sizing: border-box;
+
   background: #fff;
   border: 1.5px solid #e6e6e6;
-  border-radius: 20px;
-  box-sizing: border-box;
-  padding: 30px;
-  height: 312px;
-  text-align: center;
+  border-radius: 22px;
+
+  .rewardTitle{
+    margin: 0 0 28px;
+    padding-bottom: 5%;
+
+    border-bottom: 1px solid #eeeeee;
+
+    color: #1a1a1a;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .rewardList {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+
+    .rewardItem {
+      display: grid;
+      grid-template-columns: 44px 1fr 66px;
+      align-items: center;
+      column-gap: 10px;
+    }
+
+    .dayCircle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 10px;
+    }
+
+    .rewardText {
+      min-width: 0;
+    }
+
+    .rewardName {
+      margin: 0 0 6px;
+
+      color: #1a1a1a;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .rewardDesc {
+      margin: 0;
+
+      color: #aaa;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .rewardButton {
+      width: 52px;
+      height: 24px;
+
+      border: 0;
+      border-radius: 999px;
+
+      font-size: 10px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .lockIcon {
+      width: 55px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .done .dayCircle {
+      background: #eef0ff;
+      color: #4359fc;
+    }
+
+    .done .complete {
+      background: #eef0ff;
+      color: #4359fc;
+    }
+
+    .receive .dayCircle {
+      background: #fff1d8;
+      color: #ff7a00;
+    }
+
+    .receive .rewardName {
+      color: #ff7a00;
+    }
+
+    .receive .receiveButton {
+      background: #fff1d8;
+      color: #ff7a00;
+    }
+
+    .locked .dayCircle {
+      background: #f1f1f1;
+      color: #c8c8c8;
+    }
+
+    .locked .rewardName,
+    .locked .rewardDesc {
+      color: #c8c8c8;
+    }
+  }
 `;
 
 
 // ================================================================
 
 
-
 // 출석체크 PopUp 화면
 
 export const AttendPopUpWrap = styled.div`
-  padding: 28px 22px;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  .attendancePopup{
+    position: relative;
+
+    width: 440px;
+    padding: 42px 34px 34px;
+    box-sizing: border-box;
+
+    background: #fff;
+    border-radius: 28px;
+    text-align: center;
+
+    overflow: hidden;
+
+  .attendanceModal::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 150px;
+
+    background: #ff8004;
+    z-index: 0;
+  }
+
+    .closeBtn{
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      z-index: 2;
+
+      border: 0;
+      background: none;
+      color: #fff;
+
+      font-size: 22px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .popupHeader{
+      background-color: #ff8004;
+      position: relative;
+      z-index: 1;
+
+      margin-bottom: 36px;
+      color: #fff;
+
+      .fireIcon {
+        margin-bottom: 10px;
+        font-size: 42px;
+        line-height: 1;
+      }
+
+      .modalHeader h1 {
+        margin: 0 0 8px;
+
+        font-size: 26px;
+        font-weight: 900;
+      }
+
+      .date {
+        margin: 0;
+
+        font-size: 13px;
+        font-weight: 700;
+        opacity: 0.9;
+      }
+    }
+
+    .rewardBoxWrap{
+      position: relative;
+      z-index: 1;
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+
+      margin-bottom: 28px;
+
+      .rewardBox {
+        height: 110px;
+        padding: 20px 10px;
+        box-sizing: border-box;
+
+        background: #fff4f0;
+        border: 1.5px solid #815cff;
+        border-radius: 14px;
+
+        .rewardIcon {
+          margin: 0 0 8px;
+
+          font-size: 24px;
+          line-height: 1;
+        }
+
+        .rewardLabel {
+          margin: 0 0 6px;
+
+          color: #aaa;
+          font-size: 12px;
+          font-weight: 700;
+        }
+
+        .rewardPoint {
+          margin: 0;
+
+          color: #4359fc;
+          font-size: 18px;
+          font-weight: 900;
+        }
+      }
+    }
+
+    .attendNotice{
+      margin: 0 0 12px;
+
+      color: #888;
+      font-size: 14px;
+      font-weight: 700;
+
+      .attendNotice span{
+        color: #ff8004;
+      }
+    }
+
+    .attendNoticeBar{
+      width: 100%;
+      height: 6px;
+      margin-bottom: 22px;
+
+      background: #f7f7fb;
+      border-radius: 999px;
+      overflow: hidden;
+
+      .barFill {
+        width: 50%;
+        height: 100%;
+
+        background: #ff8004;
+        border-radius: 999px;
+      }
+    }
+
+    .buttonWrap{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+
+
+      .cancelBtn,
+      .detailBtn {
+        height: 48px;
+
+        border: 0;
+        border-radius: 14px;
+
+        font-size: 14px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .cancelBtn {
+        background: #f7f7fb;
+        color: #666;
+      }
+
+      .detailBtn {
+        background: #4359fc;
+        color: #fff;
+      }
+    }
+  }
 `;
+ 

@@ -1,0 +1,13 @@
+        <!-- <NonUser>
+            <div>
+                미리보기 학습
+                <Link to="/study/experience/mors/1">모스부호1</Link>
+                <Link to="/study/experience/mors/2">모스부호2</Link>
+                <Link to="/study/experience/sos/2">수신호1</Link>
+                <Link to="/study/experience/sos/2">수신호2</Link>
+                <Link to="/study/experience/culture/1">문화1</Link>
+                <Link to="/study/experience/culture/2">문화2</Link>
+                <Outlet />
+            </div>
+            <button>퀴즈 풀기</button>
+        </NonUser> -->
