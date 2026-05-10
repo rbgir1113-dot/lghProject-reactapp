@@ -27,7 +27,9 @@ export const ORANGE_DARK = "#92400e";
 export const PageBg = styled.div`
   background: ${colors.bgPopupOverlay};
   min-height: 100vh;
-  ${flexCenterRow}
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   padding: 73px 0 40px;
 `;
 
