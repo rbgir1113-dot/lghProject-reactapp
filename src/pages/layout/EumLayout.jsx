@@ -41,7 +41,7 @@ const Layout = () => {
 
               {/* 고객지원 페이지 이동 */}
               <button>
-                <Link to="/customservice" style={styles.contentNav}>
+                <Link to="/customservice/notice" style={styles.contentNav}>
                   고객지원
                 </Link>
               </button>
@@ -77,35 +77,72 @@ const Layout = () => {
       <main style={{ marginTop: '80px' }}>
         <Outlet />
       </main>
-      <footer style={{marginTop : '70px'}}>
+      <footer style={{marginTop: '70px'}}>
         <div style={{
-          height : '290px',
-          backgroundColor : theme.PALETTE.primary.main,
+          height: '290px',
+          backgroundColor: theme.PALETTE.primary.main,
           display: 'flex',
-          justifyContent :'center',
-          }}>
-          <p style={{
+          justifyContent: 'center',
+        }}>
+          <div style={{
             width: '105vh',
-            display : 'flex',
-            justifyContent:'space-between',
-            display : 'flex',
-            marginTop : '71px'
+            display: 'flex',
+            flexDirection: 'column',
+            marginTop: '70px'
           }}>
-            <span style={{
-              display : 'flex',
-              fontSize : theme.FONT_SIZE.h9,
-              fontWeight : theme.FONT_WEIGHT.medium,
-              fontLine : theme.FONT_LINE.h9,
-              color : theme.PALETTE.white,
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
             }}>
-              개인정보처리방침 | 서비스 이용약관
+              <span style={{
+                fontSize: theme.FONT_SIZE.h9,
+                fontWeight: theme.FONT_WEIGHT.medium,
+                color: theme.PALETTE.white,
+                marginTop:'13px'
+              }}>
+                개인정보처리방침 | 서비스 이용약관
+              </span>
+              <div style={{display: 'flex', alignItems: 'center', gap: '7px'}}>
+                <img src='/assets/image/layout/youtube.svg' style={{width:'44px'}}/>
+                <img src='/assets/image/layout/naver.svg' style={{width:'44px'}}/>
+                <img src='/assets/image/layout/instagram.svg' style={{width:'44px'}}/>
+              </div>
+            </div>
+
+            <span style={{
+              fontSize: theme.FONT_SIZE.h9,
+              fontWeight: theme.FONT_WEIGHT.bold,
+              color: theme.PALETTE.white,
+              marginTop: '57px'
+              }}>
+                INFO.
             </span>
-            <p>
-              <img src='/assets/image/layout/youtube.svg' />
-              <img src='/assets/image/layout/naver.svg' />
-              <img src='/assets/image/layout/instagram.svg' />
-            </p>
-          </p>
+
+            <div style={{
+              display: 'flex',
+              gap: '40px',
+              marginTop: '8px',
+              fontSize: theme.FONT_SIZE.h9,
+              fontWeight: theme.FONT_WEIGHT.regular,
+              color: theme.PALETTE.white,
+              }}>
+              <span>주식회사 이음</span>
+              <span>대표 : 노규호 외 4명</span>
+              <span>사업자등록번호 : 123-45-67890</span>
+            </div>
+            <div style={{
+              display: 'flex',
+              gap: '40px',
+              marginTop: '4px',
+              fontSize: theme.FONT_SIZE.h9,
+              fontWeight: theme.FONT_WEIGHT.regular,
+              color: theme.PALETTE.white,
+              }}>
+              <span>주소 : 서울특별시 마포구 백범로 130</span>
+              <span>광고·제휴문의 : code-kine@gmail.com</span>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

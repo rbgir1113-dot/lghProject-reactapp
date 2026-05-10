@@ -31,7 +31,7 @@ export const styles = {
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'flex-end',
-    marginTop: '20.65vh',
+    marginTop: '15vh',
   },
 
   // 배너 헤드라인 텍스트 
@@ -203,7 +203,8 @@ export const styles = {
     alignItems: 'center',
     maxHeight: '1000px',
     minHeight: '1100px',
-    backgroundColor: theme.GRAYSCALE[10]
+    backgroundColor: theme.GRAYSCALE[10],
+    marginTop:'80px'
   },
 
   // 콘텐츠 소개 타이틀 
