@@ -269,12 +269,12 @@ const router = createBrowserRouter([
         element: <CustomServiceContainer />,
         children: [
           {
-            path: "inquire",
-            element: <CustomServiceInquireContainer />
-          },
-          {
             path: "notice",
             element: <CustomServiceNoticeContainer />
+          },
+          {
+            path: "inquire",
+            element: <CustomServiceInquireContainer />
           },
           {
             path: "privacy",
