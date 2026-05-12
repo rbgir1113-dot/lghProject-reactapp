@@ -4,23 +4,7 @@ import { useChatContext } from "../../context/ChatContext";
 import OutlineButton from "../../common/OutlineButton";
 import ToggleSwitch from "../../common/ToggleSwitch";
 import T from "../../communityTextStyle";
-import {
-  RightPanelScroll,
-  PanelSection,
-  SectionLabel,
-  RoomTitleCenter,
-  RoomTitleText,
-  StatusRow,
-  LiveStatusRow,
-  LiveDot,
-  LiveLabel,
-  ParticipantCount,
-  IntroText,
-  TagGrid,
-  Tag,
-  AccessRow,
-  AccessLabel,
-} from "../ChatStyle";
+import S from "../ChatStyle";
 import { PopupChatRoomInfoThumbnail } from "../chatComponents/chatComponentStyle";
 import defaultProfileImg from "../../assets/chat/chat_default_profile.svg";
 
@@ -33,8 +17,8 @@ const PopupRoomInfoPanel = ({ profileUrl, tags }) => {
   const [readToggle, setReadToggle] = useState(false);
 
   return (
-    <RightPanelScroll>
-      <PanelSection $center $gap="12px">
+    <S.RightPanelScroll>
+      <S.PanelSection $center $gap="12px">
         <PopupChatRoomInfoThumbnail
           src={profileUrl || defaultProfileImg}
           alt="채팅방"
@@ -42,21 +26,21 @@ const PopupRoomInfoPanel = ({ profileUrl, tags }) => {
             e.target.src = defaultProfileImg;
           }}
         />
-        <RoomTitleCenter>
-          <RoomTitleText>수어 일상 대화방</RoomTitleText>
-          <StatusRow>
-            <LiveStatusRow>
-              <LiveDot src={liveVectorUrl} alt="" />
-              <LiveLabel>라이브</LiveLabel>
-            </LiveStatusRow>
-            <ParticipantCount>00명</ParticipantCount>
-          </StatusRow>
-        </RoomTitleCenter>
-      </PanelSection>
+        <S.RoomTitleCenter>
+          <S.RoomTitleText>수어 일상 대화방</S.RoomTitleText>
+          <S.StatusRow>
+            <S.LiveStatusRow>
+              <S.LiveDot src={liveVectorUrl} alt="" />
+              <S.LiveLabel>라이브</S.LiveLabel>
+            </S.LiveStatusRow>
+            <S.ParticipantCount>00명</S.ParticipantCount>
+          </S.StatusRow>
+        </S.RoomTitleCenter>
+      </S.PanelSection>
 
-      <PanelSection>
-        <SectionLabel>채팅방 소개</SectionLabel>
-        <IntroText>
+      <S.PanelSection>
+        <S.SectionLabel>채팅방 소개</S.SectionLabel>
+        <S.IntroText>
           <T.H11Regular $color={colors.textMain}>
             수어로 일상 대화를 나누는
           </T.H11Regular>
@@ -66,41 +50,41 @@ const PopupRoomInfoPanel = ({ profileUrl, tags }) => {
           <T.H11Regular $color={colors.textMain}>
             서로 격려하며 함께 배워요 🌱
           </T.H11Regular>
-        </IntroText>
-      </PanelSection>
+        </S.IntroText>
+      </S.PanelSection>
 
-      <PanelSection $gap="9px">
-        <SectionLabel>태그</SectionLabel>
-        <TagGrid>
+      <S.PanelSection $gap="9px">
+        <S.SectionLabel>태그</S.SectionLabel>
+        <S.TagGrid>
           {tags.map((tag, i) => (
-            <Tag key={i} $bg={tag.bg} $color={tag.color}>
+            <S.Tag key={i} $bg={tag.bg} $color={tag.color}>
               {tag.label}
-            </Tag>
+            </S.Tag>
           ))}
-        </TagGrid>
-      </PanelSection>
+        </S.TagGrid>
+      </S.PanelSection>
 
-      <PanelSection $gap="8px">
-        <SectionLabel>접근성 도구</SectionLabel>
-        <AccessRow>
-          <AccessLabel>수어 자동 변환</AccessLabel>
+      <S.PanelSection $gap="8px">
+        <S.SectionLabel>접근성 도구</S.SectionLabel>
+        <S.AccessRow>
+          <S.AccessLabel>수어 자동 변환</S.AccessLabel>
           <ToggleSwitch
             checked={signToggle}
             onChange={() => setSignToggle((v) => !v)}
             activeColor={colors.accessibilitySign}
           />
-        </AccessRow>
-        <AccessRow>
-          <AccessLabel>메세지 읽어주기</AccessLabel>
+        </S.AccessRow>
+        <S.AccessRow>
+          <S.AccessLabel>메세지 읽어주기</S.AccessLabel>
           <ToggleSwitch
             checked={readToggle}
             onChange={() => setReadToggle((v) => !v)}
             activeColor={colors.accessibilityRead}
           />
-        </AccessRow>
-      </PanelSection>
+        </S.AccessRow>
+      </S.PanelSection>
 
-      <PanelSection $gap="8px">
+      <S.PanelSection $gap="8px">
         <OutlineButton borderColor={colors.border} textColor={colors.textSub}>
           채팅방 공유
         </OutlineButton>
@@ -111,11 +95,11 @@ const PopupRoomInfoPanel = ({ profileUrl, tags }) => {
         >
           채팅방 나가기
         </OutlineButton>
-      </PanelSection>
+      </S.PanelSection>
 
-      <PanelSection $gap="8px" $last>
-        <SectionLabel>채팅방 신고</SectionLabel>
-        <IntroText>
+      <S.PanelSection $gap="8px" $last>
+        <S.SectionLabel>채팅방 신고</S.SectionLabel>
+        <S.IntroText>
           <T.H11Regular $color={colors.textMain}>
             만약 해당 채팅방에서 부적절한 행위
           </T.H11Regular>
@@ -125,12 +109,12 @@ const PopupRoomInfoPanel = ({ profileUrl, tags }) => {
           <T.H11Regular $color={colors.textMain}>
             신고하기 버튼으로 신고 가능합니다.
           </T.H11Regular>
-        </IntroText>
+        </S.IntroText>
         <OutlineButton borderColor={colors.danger} textColor={colors.danger}>
           채팅방신고
         </OutlineButton>
-      </PanelSection>
-    </RightPanelScroll>
+      </S.PanelSection>
+    </S.RightPanelScroll>
   );
 };
 
