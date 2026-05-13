@@ -1,11 +1,8 @@
-import styled from "styled-components";
-import theme from "../../../../styles/theme";
-import { LAYOUT, TAG_ON_PRIMARY } from "../../constants";
+import { TAG_ON_PRIMARY } from "../../constants";
 import PostContent from "./detailComponent/PostContent";
 import FloatingChatButton from "../../common/FloatingChatButton";
 import PostSidebar from "./sidebar/PostSidebar";
-import S from "../../communityStyle";
-import { h11Regular } from "../../../../styles/common";
+import communityStyle from "../../communityStyle";
 import {
   BreadcrumbBar,
   BreadcrumbPath,
@@ -19,10 +16,21 @@ import CommentSection from "./detailComponent/CommentSection";
 
 const authorProfileImg =
   "https://www.figma.com/api/mcp/asset/c2cb9995-4cdf-4fcb-97c9-8a6c124289ab";
-const reportIconImg =
-  "https://www.figma.com/api/mcp/asset/3823b07b-8dff-47fb-9bc5-b1dacb0103e8";
-const linkIconImg =
-  "https://www.figma.com/api/mcp/asset/307137f6-4a5b-4f60-8e17-56fb9a225552";
+
+const { Page, ContentArea, ColumnBlock } = communityStyle;
+
+const S = {
+  Page,
+  ContentArea,
+  ColumnBlock,
+  BreadcrumbBar,
+  BreadcrumbPath,
+  CategoryTag,
+  Crumb,
+  CrumbSep,
+  PostBodyWrapper,
+  PostHeader,
+};
 
 const PostDetailPage = () => {
   // const navigate = useNavigate();
@@ -40,41 +48,40 @@ const PostDetailPage = () => {
     views: 324,
     likes: 42,
   };
-  const tag = ["# 수어기초", "# 알파벳", "# 태그1", "# 태그2"];
 
   return (
     // 페이지
     <S.Page>
       {/* 좌측 9개, 우측 3개 로 나누는 레이아웃 */}
-      <BreadcrumbBar>
-        <Crumb>홈</Crumb>
-        <CrumbSep>›</CrumbSep>
-        <Crumb>커뮤니티</Crumb>
-        <CrumbSep>›</CrumbSep>
-        <Crumb>학습 인증</Crumb>
-        <CrumbSep>›</CrumbSep>
-        <Crumb current>
+      <S.BreadcrumbBar>
+        <S.Crumb>홈</S.Crumb>
+        <S.CrumbSep>›</S.CrumbSep>
+        <S.Crumb>커뮤니티</S.Crumb>
+        <S.CrumbSep>›</S.CrumbSep>
+        <S.Crumb>학습 인증</S.Crumb>
+        <S.CrumbSep>›</S.CrumbSep>
+        <S.Crumb current>
           수어 알파벳 완전 마스터! 1달 열공 후기 남깁니다 🙌
-        </Crumb>
-      </BreadcrumbBar>
+        </S.Crumb>
+      </S.BreadcrumbBar>
       <S.ContentArea>
         {/* 좌측 9개 메인 영역 */}
         {/* 헤더 만들기 */}
 
         <S.ColumnBlock>
           {/* 헤더 */}
-          <PostHeader>
-            <CategoryTag>{postDataDTO.category}</CategoryTag>
-            <BreadcrumbPath $color={TAG_ON_PRIMARY.text}>
+          <S.PostHeader>
+            <S.CategoryTag>{postDataDTO.category}</S.CategoryTag>
+            <S.BreadcrumbPath $color={TAG_ON_PRIMARY.text}>
               {postDataDTO.breadcrumb}
-            </BreadcrumbPath>
-          </PostHeader>
+            </S.BreadcrumbPath>
+          </S.PostHeader>
 
           {/* 감싸는 카드 */}
-          <PostBodyWrapper>
+          <S.PostBodyWrapper>
             <PostContent />
             <CommentSection />
-          </PostBodyWrapper>
+          </S.PostBodyWrapper>
           {/* <PostContent /> */}
           {/* <CommentSection /> */}
         </S.ColumnBlock>
