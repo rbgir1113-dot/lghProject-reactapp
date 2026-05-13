@@ -172,3 +172,13 @@ export const TYPE = {
   REQUEST: "request",
   ROOM: "room",
 };
+
+// 게시글 카테고리 목록 — label: UI 표시값, value: DB POST_TAG 저장값
+export const POST_CATEGORIES = [
+  { label: "전체", value: "" },
+  { label: "자유게시판", value: "자유게시판" },
+  { label: "질문게시판", value: "질문게시판" },
+  { label: "수어 학습", value: "수어학습" },
+  { label: "학습 후기", value: "학습후기" },
+  { label: "취업·진로", value: "취업·진로" },
+];

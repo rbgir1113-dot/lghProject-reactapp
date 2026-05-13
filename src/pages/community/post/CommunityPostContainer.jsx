@@ -8,15 +8,7 @@ import styled from "styled-components";
 import { flexCenterRow, flexStartRow, h11Bold } from "../../../styles/common";
 import theme from "../../../styles/theme";
 import { useChatContext } from "../context/ChatContext";
-
-const CATEGORIES = [
-  { label: "전체", value: "" },
-  { label: "자유게시판", value: "자유게시판" },
-  { label: "학습 질문", value: "학습 질문" },
-  { label: "학습 인증", value: "학습 인증" },
-  { label: "수어 영상", value: "수어 영상" },
-  { label: "취업·진로", value: "취업·진로" },
-];
+import { POST_CATEGORIES } from "../constants";
 
 // TODO: API 연결 시 서버에서 받아온 데이터로 교체 (메인 노출용 추천 채팅방 3개)
 const MOCK_FEATURED_ROOMS = [
@@ -129,7 +121,7 @@ const CommunityPostContainer = () => {
         <PostCategoryHeader>
           {/* 카테고리 */}
           <PostCategoryRow>
-            {CATEGORIES.map(({ label, value }) => (
+            {POST_CATEGORIES.map(({ label, value }) => (
               <S.CategoryPill
                 key={value}
                 $active={selectedTag === value}
