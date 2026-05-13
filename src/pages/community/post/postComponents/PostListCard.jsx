@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faEye, faHeart } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -42,11 +43,12 @@ const PostListCard = ({
   commentCount = 0,
   postReadCount = 0,
 }) => {
+  const navigate = useNavigate();
   const fallbackProfile = defaultProfiles[id % defaultProfiles.length];
 
   return (
     // 포스트 카드 영역
-    <Card>
+    <Card onClick={() => navigate(`/community/post/${id}`)}>
       {/* 태그 및 작성 시각 */}
       <TagAndTimeRow>
         <Tag>{postTag}</Tag>
