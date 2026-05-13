@@ -1,5 +1,5 @@
-import React from "react";
-import { Outlet, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, useNavigate, useParams, useLocation } from "react-router-dom";
 import S from "../communityStyle";
 import CommunityProfile from "./UserProfile/CommunityProfile";
 import UserActivity from "./UserProfile/UserActivity";
@@ -9,6 +9,18 @@ import PostFilterBar from "./UserProfile/PostFilterBar";
 
 const CommunityUserProfileComponent = () => {
   const { userId } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const isRootProfile =
+      location.pathname === `/community/profile/${userId}` ||
+      location.pathname === `/community/profile/${userId}/`;
+
+    if (isRootProfile) {
+      navigate(`/community/profile/${userId}/writed-post`, { replace: true });
+    }
+  }, [userId, location.pathname, navigate]);
 
   return (
     <div>
