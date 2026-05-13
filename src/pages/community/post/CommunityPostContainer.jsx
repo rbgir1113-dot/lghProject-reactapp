@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import S from "../communityStyle";
 import T from "../communityTextStyle";
@@ -8,6 +8,15 @@ import styled from "styled-components";
 import { flexCenterRow, flexStartRow, h11Bold } from "../../../styles/common";
 import theme from "../../../styles/theme";
 import { useChatContext } from "../context/ChatContext";
+
+const CATEGORIES = [
+  { label: "전체", value: "" },
+  { label: "자유게시판", value: "자유게시판" },
+  { label: "학습 질문", value: "학습 질문" },
+  { label: "학습 인증", value: "학습 인증" },
+  { label: "수어 영상", value: "수어 영상" },
+  { label: "취업·진로", value: "취업·진로" },
+];
 
 // TODO: API 연결 시 서버에서 받아온 데이터로 교체 (메인 노출용 추천 채팅방 3개)
 const MOCK_FEATURED_ROOMS = [
@@ -78,6 +87,7 @@ const AllChatButton = styled.div`
 // 컴포넌트
 const CommunityPostContainer = () => {
   const { openChatRoom } = useChatContext();
+  const [selectedTag, setSelectedTag] = useState("");
 
   console.log("메인 영역 그려지기");
   return (
@@ -119,11 +129,15 @@ const CommunityPostContainer = () => {
         <PostCategoryHeader>
           {/* 카테고리 */}
           <PostCategoryRow>
-            <S.CategoryPill>카테고리</S.CategoryPill>
-            <S.CategoryPill>카테고리</S.CategoryPill>
-            <S.CategoryPill>카테고리</S.CategoryPill>
-            <S.CategoryPill>카테고리</S.CategoryPill>
-            <S.CategoryPill>카테고리</S.CategoryPill>
+            {CATEGORIES.map(({ label, value }) => (
+              <S.CategoryPill
+                key={value}
+                $active={selectedTag === value}
+                onClick={() => setSelectedTag(value)}
+              >
+                {label}
+              </S.CategoryPill>
+            ))}
           </PostCategoryRow>
           <S.ActionBtn $type="submit">글쓰기</S.ActionBtn>
 
@@ -131,7 +145,7 @@ const CommunityPostContainer = () => {
         </PostCategoryHeader>
 
         {/* 포스트 카드 목록 + 페이지네이션 */}
-        <PostListSection />
+        <PostListSection postTag={selectedTag} />
       </S.ColumnBlock>
     </div>
   );

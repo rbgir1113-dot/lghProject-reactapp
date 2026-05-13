@@ -13,6 +13,10 @@ const PostListSection = ({ postTag = "" }) => {
   // const { userId } = useParams({ userId });
 
   useEffect(() => {
+    setCurrentPage(1);
+  }, [postTag]);
+
+  useEffect(() => {
     const load = async () => {
       setIsLoading(true);
       try {
