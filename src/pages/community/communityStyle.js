@@ -136,6 +136,7 @@ const ColumnBlock = styled.div`
   justify-content: ${({ justifyContent }) => justifyContent || "flex-start"};
   gap: ${({ gap }) => gap || "24px"};
   margin-top: ${({ marginTop }) => marginTop || "0px"};
+  margin-bottom: ${({ marginBottom }) => marginBottom || "0px"};
 `;
 
 const RowBlock = styled.div`

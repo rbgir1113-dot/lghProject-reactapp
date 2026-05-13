@@ -26,16 +26,6 @@ const CommunityContainer = () => {
             </S.ContentArea>
           </S.Page>
         </div>
-        <div>
-          지금 활동 중인 멤버
-          {users.map((user) => (
-            <div key={user.userId}>
-              <Link to={`/community/profile/${user.userId}`}>
-                {user.userName}
-              </Link>
-            </div>
-          ))}
-        </div>
       </>
     </ChatProvider>
   );

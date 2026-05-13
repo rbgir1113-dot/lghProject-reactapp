@@ -3,6 +3,7 @@ import PostListCard from "./PostListCard.jsx";
 import PageCount from "./PageCount";
 import { fetchPosts } from "../../communityApi/postApi";
 import S from "../../communityStyle";
+import { height } from "@fortawesome/free-solid-svg-icons/fa0";
 
 const PostListSection = ({ postTag = "" }) => {
   const [posts, setPosts] = useState([]);
@@ -40,7 +41,7 @@ const PostListSection = ({ postTag = "" }) => {
   if (isLoading) return <div>로딩 중...</div>;
 
   return (
-    <S.ColumnBlock>
+    <S.ColumnBlock marginBottom="42px">
       {posts.map(
         ({
           id,

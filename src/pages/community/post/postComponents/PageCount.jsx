@@ -8,7 +8,7 @@ const PageButtonRow = styled.div`
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 42px;
+  margin-bottom: 80px;
 `;
 
 const buttonStyle = css`
