@@ -17,6 +17,23 @@ import {
   ReportButton,
 } from "./commentStyle";
 
+const S = {
+  CommentItemWrapper,
+  LeftArea,
+  Avatar,
+  DefaultAvatar,
+  Body,
+  AuthorName,
+  CommentText,
+  ReactionsRow,
+  ReactionItem,
+  AccessibilityRow,
+  AccessBtn,
+  RightArea,
+  TimeText,
+  ReportButton,
+};
+
 const reportIconImg =
   "https://www.figma.com/api/mcp/asset/3823b07b-8dff-47fb-9bc5-b1dacb0103e8";
 
@@ -35,47 +52,47 @@ const CommentItem = ({
   const displayLines = commentContent ? commentContent.split("\n") : [];
 
   return (
-    <CommentItemWrapper isReply={isReply}>
-      <LeftArea>
+    <S.CommentItemWrapper isReply={isReply}>
+      <S.LeftArea>
         {avatar ? (
-          <Avatar>
+          <S.Avatar>
             <img src={avatar} alt={userNickname} />
-          </Avatar>
+          </S.Avatar>
         ) : (
-          <DefaultAvatar>👤</DefaultAvatar>
+          <S.DefaultAvatar>👤</S.DefaultAvatar>
         )}
-        <Body>
-          <AuthorName isAuthor={isAuthor}>{userNickname}</AuthorName>
-          <CommentText>
+        <S.Body>
+          <S.AuthorName isAuthor={isAuthor}>{userNickname}</S.AuthorName>
+          <S.CommentText>
             {displayLines.map((line, i) => (
               <p key={i}>{line}</p>
             ))}
-          </CommentText>
-          <ReactionsRow>
-            <ReactionItem>
+          </S.CommentText>
+          <S.ReactionsRow>
+            <S.ReactionItem>
               <FontAwesomeIcon icon={faHeart} />
               <span>{likeCount}</span>
-            </ReactionItem>
-            <ReactionItem>
+            </S.ReactionItem>
+            <S.ReactionItem>
               <FontAwesomeIcon icon={faCommentDots} />
               <span>{replyCount}</span>
-            </ReactionItem>
-          </ReactionsRow>
+            </S.ReactionItem>
+          </S.ReactionsRow>
           {showAccessibility && (
-            <AccessibilityRow>
-              <AccessBtn variant="blue">수어로 보기</AccessBtn>
-              <AccessBtn variant="green">글 읽어주기</AccessBtn>
-            </AccessibilityRow>
+            <S.AccessibilityRow>
+              <S.AccessBtn variant="blue">수어로 보기</S.AccessBtn>
+              <S.AccessBtn variant="green">글 읽어주기</S.AccessBtn>
+            </S.AccessibilityRow>
           )}
-        </Body>
-      </LeftArea>
-      <RightArea>
-        <TimeText>{commentCreateAt}</TimeText>
-        <ReportButton aria-label="댓글 신고">
+        </S.Body>
+      </S.LeftArea>
+      <S.RightArea>
+        <S.TimeText>{commentCreateAt}</S.TimeText>
+        <S.ReportButton aria-label="댓글 신고">
           <img src={reportIconImg} alt="신고" />
-        </ReportButton>
-      </RightArea>
-    </CommentItemWrapper>
+        </S.ReportButton>
+      </S.RightArea>
+    </S.CommentItemWrapper>
   );
 };
 

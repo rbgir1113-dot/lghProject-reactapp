@@ -12,7 +12,7 @@ import {
   PostBodyWrapper,
   PostHeader,
 } from "./postDetailStyle";
-import CommentSection from "./detailComponent/CommentSection";
+import CommentSection from "../../comment/CommentSection";
 
 const authorProfileImg =
   "https://www.figma.com/api/mcp/asset/c2cb9995-4cdf-4fcb-97c9-8a6c124289ab";

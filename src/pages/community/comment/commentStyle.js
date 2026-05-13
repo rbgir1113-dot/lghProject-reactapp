@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import theme from "../../../../../styles/theme";
+import theme from "../../../styles/theme";
 import {
   ACCESSIBILITY,
   COMMENT,
@@ -7,8 +7,8 @@ import {
   FONT_SIZE_EXT,
   RADIUS,
   SURFACE,
-} from "../../../constants";
-import { h11Regular, h12Bold, h5Bold } from "../../../../../styles/common";
+} from "../constants";
+import { h11Regular, h12Bold, h5Bold } from "../../../styles/common";
 
 const { PALETTE, GRAYSCALE, TEXT_COLOR, FONT_SIZE, FONT_WEIGHT } = theme;
 

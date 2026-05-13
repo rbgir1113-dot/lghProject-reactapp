@@ -11,6 +11,17 @@ import {
   CommentList,
 } from "./commentStyle";
 
+const S = {
+  CommentSectionWrapper,
+  HeaderRow,
+  CommentTitle,
+  CountBadge,
+  TextArea,
+  SubmitRow,
+  SubmitButton,
+  CommentList,
+};
+
 const profileImg1 =
   "https://www.figma.com/api/mcp/asset/c2cb9995-4cdf-4fcb-97c9-8a6c124289ab";
 const profileImg2 =
@@ -78,28 +89,28 @@ const CommentSection = ({ commentCount = 247, comments = MOCK_COMMENTS }) => {
   };
 
   return (
-    <CommentSectionWrapper>
-      <HeaderRow>
-        <CommentTitle>댓글</CommentTitle>
-        <CountBadge>{commentCount}</CountBadge>
-      </HeaderRow>
+    <S.CommentSectionWrapper>
+      <S.HeaderRow>
+        <S.CommentTitle>댓글</S.CommentTitle>
+        <S.CountBadge>{commentCount}</S.CountBadge>
+      </S.HeaderRow>
 
-      <TextArea
+      <S.TextArea
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="따뜻한 댓글을 남겨보세요"
       />
 
-      <SubmitRow>
-        <SubmitButton onClick={handleSubmit}>댓글 등록</SubmitButton>
-      </SubmitRow>
+      <S.SubmitRow>
+        <S.SubmitButton onClick={handleSubmit}>댓글 등록</S.SubmitButton>
+      </S.SubmitRow>
 
-      <CommentList>
+      <S.CommentList>
         {comments.map((comment) => (
           <CommentItem key={comment.id} {...comment} />
         ))}
-      </CommentList>
-    </CommentSectionWrapper>
+      </S.CommentList>
+    </S.CommentSectionWrapper>
   );
 };
 
