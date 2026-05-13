@@ -68,7 +68,7 @@ const PostDetailPage = () => {
         {/* 좌측 9개 메인 영역 */}
         {/* 헤더 만들기 */}
 
-        <S.ColumnBlock>
+        <S.ColumnBlock gap="0px">
           {/* 헤더 */}
           <S.PostHeader>
             <S.CategoryTag>{postDataDTO.category}</S.CategoryTag>

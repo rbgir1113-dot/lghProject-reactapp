@@ -131,7 +131,9 @@ const CommunityPostContainer = () => {
               </S.CategoryPill>
             ))}
           </PostCategoryRow>
-          <S.ActionBtn $type="submit">글쓰기</S.ActionBtn>
+          <Link to="/community/post/write">
+            <S.ActionBtn $type="submit">글쓰기</S.ActionBtn>
+          </Link>
 
           {/* 글쓰기 */}
         </PostCategoryHeader>
