@@ -24,6 +24,7 @@ import {
   TagRow,
 } from "../postDetailStyle";
 import DummyContent from "./dummyContent/DummyContent";
+import { DEFAULT_IMAGES } from "../../../constants";
 
 const { PALETTE } = theme;
 
@@ -49,20 +50,13 @@ const S = {
   TagRow,
 };
 
-const authorProfileImg =
-  "https://www.figma.com/api/mcp/asset/c2cb9995-4cdf-4fcb-97c9-8a6c124289ab";
-const reportIconImg =
-  "https://www.figma.com/api/mcp/asset/3823b07b-8dff-47fb-9bc5-b1dacb0103e8";
-const linkIconImg =
-  "https://www.figma.com/api/mcp/asset/307137f6-4a5b-4f60-8e17-56fb9a225552";
-
 const PostContent = ({
   category = "학습 인증",
   breadcrumb = "이음 커뮤니티 › 학습 인증 게시판",
   title = "수어 알파벳 완전 마스터! 1달 열공 후기 남깁니다 🙌",
   authorName = "수어러버김지민",
   authorLevel = "Lv.7",
-  authorAvatar = authorProfileImg,
+  authorAvatar = DEFAULT_IMAGES.authorProfile,
   postDate = "2025.03.08 (오늘)",
   views = 324,
   likes = 42,
@@ -83,7 +77,11 @@ const PostContent = ({
 
         {/* 게시글 작성자 정보 */}
         <S.AuthorRow>
-          <S.AuthorAvatar src={authorAvatar} alt={authorName} />
+          <S.AuthorAvatar
+            src={authorAvatar}
+            alt={authorName}
+            onError={(e) => { e.currentTarget.src = DEFAULT_IMAGES.authorProfile; }}
+          />
           <S.AuthorMeta>
             <S.AuthorName>{authorName}</S.AuthorName>
             <S.AuthorSubRow>
@@ -127,10 +125,18 @@ const PostContent = ({
           </S.LikeButton>
           <S.ActionButtons>
             <S.IconButton aria-label="링크 복사">
-              <img src={linkIconImg} alt="링크" />
+              <img
+                src={DEFAULT_IMAGES.linkIcon}
+                alt="링크"
+                onError={(e) => { e.currentTarget.src = DEFAULT_IMAGES.linkIcon; }}
+              />
             </S.IconButton>
             <S.IconButton danger aria-label="게시글 신고">
-              <img src={reportIconImg} alt="신고" />
+              <img
+                src={DEFAULT_IMAGES.reportIcon}
+                alt="신고"
+                onError={(e) => { e.currentTarget.src = DEFAULT_IMAGES.reportIcon; }}
+              />
             </S.IconButton>
           </S.ActionButtons>
         </S.ActionRow>

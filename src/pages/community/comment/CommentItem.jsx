@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCommentDots, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { DEFAULT_IMAGES } from "../constants";
 import {
   CommentItemWrapper,
   LeftArea,
-  Avatar,
   DefaultAvatar,
   Body,
   AuthorName,
@@ -17,10 +17,12 @@ import {
   ReportButton,
 } from "./commentStyle";
 
+import { AuthorAvatar } from "../post/detail/postDetailStyle";
+
 const S = {
   CommentItemWrapper,
   LeftArea,
-  Avatar,
+  AuthorAvatar,
   DefaultAvatar,
   Body,
   AuthorName,
@@ -33,9 +35,6 @@ const S = {
   TimeText,
   ReportButton,
 };
-
-const reportIconImg =
-  "https://www.figma.com/api/mcp/asset/3823b07b-8dff-47fb-9bc5-b1dacb0103e8";
 
 const CommentItem = ({
   avatar = null,
@@ -54,13 +53,14 @@ const CommentItem = ({
   return (
     <S.CommentItemWrapper isReply={isReply}>
       <S.LeftArea>
-        {avatar ? (
-          <S.Avatar>
-            <img src={avatar} alt={userNickname} />
-          </S.Avatar>
-        ) : (
-          <S.DefaultAvatar>👤</S.DefaultAvatar>
-        )}
+        <S.AuthorAvatar
+          size="40px"
+          src={avatar}
+          alt={userNickname}
+          onError={(e) => {
+            e.currentTarget.src = DEFAULT_IMAGES.authorProfile;
+          }}
+        />
         <S.Body>
           <S.AuthorName isAuthor={isAuthor}>{userNickname}</S.AuthorName>
           <S.CommentText>
@@ -89,7 +89,13 @@ const CommentItem = ({
       <S.RightArea>
         <S.TimeText>{commentCreateAt}</S.TimeText>
         <S.ReportButton aria-label="댓글 신고">
-          <img src={reportIconImg} alt="신고" />
+          <img
+            src={DEFAULT_IMAGES.reportIcon}
+            alt="신고"
+            onError={(e) => {
+              e.currentTarget.src = DEFAULT_IMAGES.reportIcon;
+            }}
+          />
         </S.ReportButton>
       </S.RightArea>
     </S.CommentItemWrapper>

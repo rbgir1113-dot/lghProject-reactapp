@@ -172,7 +172,7 @@ export const ReportButton = styled.button`
   height: ${COMMENT.avatarSize};
   border-radius: ${RADIUS.button};
   background: ${SURFACE.card};
-  border: 2px solid ${PALETTE.red};
+  /* border: 2px solid ${PALETTE.red}; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,9 +181,9 @@ export const ReportButton = styled.button`
   padding: 0;
 
   img {
-    width: 24px;
-    height: 24px;
-    object-fit: cover;
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
   }
 `;
 

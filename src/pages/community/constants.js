@@ -2,6 +2,9 @@
 // theme.js에 이미 있는 값은 여기에 중복 정의하지 않는다.
 
 import theme from "../../styles/theme";
+import defaultProfileImg from "./assets/userProfile/default1.png";
+import defaultReportIcon from "./assets/postDetail/singo.png";
+import defaultLinkIcon from "./assets/postDetail/link_copy.svg";
 
 // 외곽선 내부 사이즈
 const borderWidth = 2;
@@ -171,6 +174,13 @@ export const TYPE = {
   LIST: "list",
   REQUEST: "request",
   ROOM: "room",
+};
+
+// 게시글 상세 기본 이미지 (URL 로딩 실패 시 폴백용)
+export const DEFAULT_IMAGES = {
+  authorProfile: defaultProfileImg,
+  reportIcon: defaultReportIcon,
+  linkIcon: defaultLinkIcon,
 };
 
 // 게시글 카테고리 목록 — label: UI 표시값, value: DB POST_TAG 저장값
