@@ -1,6 +1,6 @@
 import React from "react";
 import LiveChatCard from "./chatComponents/LiveChatCard";
-import S from "../communityStyle";
+import { ColumnBlock, ActionBtn, RowBlock } from "../communityStyle";
 import T from "../communityTextStyle";
 import styled from "styled-components";
 import { flexCenterRow } from "../../../styles/common";
@@ -57,15 +57,15 @@ const CommunityChatComponent = () => {
 
   return (
     <div>
-      <S.ColumnBlock>
+      <ColumnBlock>
         {/* 상단 헤더 */}
         <HeaderBlock>
           <T.H6Bold>실시간 채팅방</T.H6Bold>
-          <S.ActionBtn $type="submit">+채팅방 만들기</S.ActionBtn>
+          <ActionBtn $type="submit">+채팅방 만들기</ActionBtn>
         </HeaderBlock>
 
         {/* 채팅방 카드 목록 */}
-        <S.RowBlock flexWrap="wrap">
+        <RowBlock flexWrap="wrap">
           {MOCK_ROOMS.map((room) => (
             <LiveChatCard
               key={room.id}
@@ -75,8 +75,8 @@ const CommunityChatComponent = () => {
               onJoin={() => openChatRoom(room)}
             />
           ))}
-        </S.RowBlock>
-      </S.ColumnBlock>
+        </RowBlock>
+      </ColumnBlock>
     </div>
   );
 };

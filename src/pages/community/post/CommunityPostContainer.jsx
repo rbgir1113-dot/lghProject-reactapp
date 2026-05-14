@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import S from "../communityStyle";
+import { ColumnBlock, ActionBtn, CategoryPill } from "../communityStyle";
 import T from "../communityTextStyle";
 import LiveChatCard from "../chat/chatComponents/LiveChatCard";
 import PostListSection from "./postComponents/PostListSection.jsx";
@@ -9,6 +9,12 @@ import { flexCenterRow, flexStartRow, h11Bold } from "../../../styles/common";
 import theme from "../../../styles/theme";
 import { useChatContext } from "../context/ChatContext";
 import { POST_CATEGORIES } from "../constants";
+
+const S = {
+  ColumnBlock,
+  ActionBtn,
+  CategoryPill,
+};
 
 // TODO: API 연결 시 서버에서 받아온 데이터로 교체 (메인 노출용 추천 채팅방 3개)
 const MOCK_FEATURED_ROOMS = [

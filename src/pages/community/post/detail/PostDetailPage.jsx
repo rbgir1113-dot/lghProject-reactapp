@@ -2,7 +2,7 @@ import { TAG_ON_PRIMARY } from "../../constants";
 import PostContent from "./detailComponent/PostContent";
 import FloatingChatButton from "../../common/FloatingChatButton";
 import PostSidebar from "../sidebar/component/PostSidebar";
-import communityStyle from "../../communityStyle";
+import { Page, ContentArea, ColumnBlock } from "../../communityStyle";
 import {
   BreadcrumbBar,
   BreadcrumbPath,
@@ -16,8 +16,6 @@ import CommentSection from "../../comment/CommentSection";
 
 const authorProfileImg =
   "https://www.figma.com/api/mcp/asset/c2cb9995-4cdf-4fcb-97c9-8a6c124289ab";
-
-const { Page, ContentArea, ColumnBlock } = communityStyle;
 
 const S = {
   Page,

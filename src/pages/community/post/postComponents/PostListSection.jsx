@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import PostListCard from "./PostListCard.jsx";
 import PageCount from "./PageCount";
 import { fetchPosts } from "../../communityApi/postApi";
-import S from "../../communityStyle";
+import { ColumnBlock } from "../../communityStyle";
 import { height } from "@fortawesome/free-solid-svg-icons/fa0";
+
+const S = {
+  ColumnBlock,
+};
 
 const PostListSection = ({ postTag = "" }) => {
   const [posts, setPosts] = useState([]);

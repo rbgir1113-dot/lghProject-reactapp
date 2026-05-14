@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import S from "./communityStyle";
+import { Page, ContentArea } from "./communityStyle";
 import MainRightSide from "./common/MainRightSide";
 import { ChatProvider } from "./context/ChatContext";
 
@@ -8,6 +8,11 @@ const users = [
   { userId: 1, userName: "홍길동" },
   { userId: 2, userName: "장보고" },
 ];
+
+const S = {
+  Page,
+  ContentArea,
+};
 
 // 커뮤니티 가장 메인 영역
 const CommunityContainer = () => {

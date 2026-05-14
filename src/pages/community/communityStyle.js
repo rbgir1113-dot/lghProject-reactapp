@@ -92,10 +92,10 @@ export const sideCardStyle = css`
   border-radius: ${RADIUS.card};
 `;
 
-/* ══ Styled Components (S 네임스페이스) ══ */
+/* ══ Styled Components (Named Exports) ══ */
 
 // 커뮤니티 에서 좌측 9개, 우측 3 개로 나누는 과정을 위한 Page
-const Page = styled.div`
+export const Page = styled.div`
   background: ${theme.GRAYSCALE[10]};
   /* min-width: 1920px; */
   min-height: 100vh;
@@ -106,7 +106,7 @@ const Page = styled.div`
 `;
 
 // 해당 영역은 좌측에는 메인, 우측에는 사이드 레이아웃이 있는 구조
-const ContentArea = styled.main`
+export const ContentArea = styled.main`
   width: 1320px;
   flex: 1;
   /* padding: 24px 300px 60px; */
@@ -116,7 +116,7 @@ const ContentArea = styled.main`
   box-sizing: border-box;
 `;
 
-const LeftBlock = styled.div`
+export const LeftBlock = styled.div`
   width: 984px;
   display: flex;
   flex-direction: ${({ wrap }) => (wrap ? "row" : "column")};
@@ -128,7 +128,7 @@ const LeftBlock = styled.div`
   margin-top: ${({ marginTop }) => marginTop || 0}px;
 `;
 
-const ColumnBlock = styled.div`
+export const ColumnBlock = styled.div`
   width: ${({ width }) => width || "984px"};
   display: flex;
   flex-direction: column;
@@ -139,7 +139,7 @@ const ColumnBlock = styled.div`
   margin-bottom: ${({ marginBottom }) => marginBottom || "0px"};
 `;
 
-const RowBlock = styled.div`
+export const RowBlock = styled.div`
   width: ${({ width }) => width || "984px"};
   display: flex;
   flex-direction: row;
@@ -151,7 +151,7 @@ const RowBlock = styled.div`
 `;
 
 // 카드 종류를 간단하게 크기를 맞춰서 하는 것
-const RowSimpleBlock = styled.div`
+export const RowSimpleBlock = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
@@ -159,7 +159,7 @@ const RowSimpleBlock = styled.div`
 `;
 
 // 너비 고정 없이 row 배치 — 카드 내부 레이아웃 용
-const FlexRow = styled.div`
+export const FlexRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: ${({ alignItems }) => alignItems || "center"};
@@ -169,7 +169,7 @@ const FlexRow = styled.div`
 `;
 
 // column 으로 24px 간격 으로 리스트 하는 개념
-const CardList = styled.div`
+export const CardList = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -178,7 +178,7 @@ const CardList = styled.div`
 `;
 
 // 버튼 스타일 컴포넌트
-const ActionBtn = styled.button`
+export const ActionBtn = styled.button`
   ${h11Bold}
   padding: 8px 30px;
   border-radius: 10px;
@@ -205,7 +205,7 @@ const ActionBtn = styled.button`
 `;
 
 // 카테고리 선택 버튼 타입
-const CategoryPill = styled.button`
+export const CategoryPill = styled.button`
   height: 51px;
   padding: 16px 30px;
   border-radius: 100px;
@@ -236,25 +236,9 @@ const CategoryPill = styled.button`
 `;
 
 // 구분선 만들기
-const Divider = styled.hr`
+export const Divider = styled.hr`
   width: 100%;
   border: none;
   border-top: 1px solid ${theme.GRAYSCALE[8]};
   margin: 0;
 `;
-
-const S = {
-  Page,
-  ContentArea,
-  LeftBlock,
-  ColumnBlock,
-  RowBlock,
-  RowSimpleBlock,
-  FlexRow,
-  CardList,
-  ActionBtn,
-  CategoryPill,
-  Divider,
-};
-
-export default S;

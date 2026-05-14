@@ -1,11 +1,17 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate, useParams, useLocation } from "react-router-dom";
-import S from "../communityStyle";
+import { Page, ContentArea, ColumnBlock } from "../communityStyle";
 import CommunityProfile from "./UserProfile/CommunityProfile";
 import UserActivity from "./UserProfile/UserActivity";
 import UserChatRequest from "./UserProfile/UserChatRequest";
 import UserReportBlock from "./UserProfile/UserReportBlock";
 import PostFilterBar from "./UserProfile/PostFilterBar";
+
+const S = {
+  Page,
+  ContentArea,
+  ColumnBlock,
+};
 
 const CommunityUserProfileComponent = () => {
   const { userId } = useParams();
