@@ -6,6 +6,7 @@
 import styled from "styled-components";
 import theme from "../../../../../styles/theme";
 import { FONT_FAMILY, RADIUS, SURFACE } from "../../../constants";
+import { h12Bold } from "../../../../../styles/common";
 
 const { PALETTE, GRAYSCALE, TEXT_COLOR, FONT_SIZE, FONT_WEIGHT } = theme;
 
@@ -32,10 +33,7 @@ const LeftArea = styled.div`
 const Badge = styled.div`
   background: ${PALETTE.primary.main};
   color: ${PALETTE.white};
-  font-family: ${FONT_FAMILY};
-  font-weight: ${FONT_WEIGHT.bold};
-  font-size: ${FONT_SIZE.h12};
-  letter-spacing: -0.2px;
+  ${h12Bold}
   text-align: center;
   padding: 4px 5px;
   border-radius: 4px;
