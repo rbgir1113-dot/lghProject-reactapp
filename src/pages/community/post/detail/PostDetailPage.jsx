@@ -1,7 +1,7 @@
 import { TAG_ON_PRIMARY } from "../../constants";
 import PostContent from "./detailComponent/PostContent";
 import FloatingChatButton from "../../common/FloatingChatButton";
-import PostSidebar from "./sidebar/PostSidebar";
+import PostSidebar from "../sidebar/component/PostSidebar";
 import communityStyle from "../../communityStyle";
 import {
   BreadcrumbBar,
