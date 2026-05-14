@@ -37,13 +37,12 @@ const S = {
 };
 
 const CommentItem = ({
-  avatar = null,
+  userProfile = "default.jpg",
   userNickname = "사용자",
-  isAuthor = false,
   commentId = null,
   commentContent = "",
-  likeCount = 1,
-  replyCount = 1,
+  commentLikeCount = 0,
+  commentReplyCount = 0,
   commentCreateAt = "방금 전",
   showAccessibility = true,
 }) => {
@@ -56,14 +55,14 @@ const CommentItem = ({
         <S.AuthorAvatar
           size="40px"
           border-radius="8px"
-          src={avatar}
+          src={userProfile}
           alt={userNickname}
           onError={(e) => {
             e.currentTarget.src = DEFAULT_IMAGES.authorProfile;
           }}
         />
         <S.Body>
-          <S.AuthorName isAuthor={isAuthor}>{userNickname}</S.AuthorName>
+          <S.AuthorName isAuthor={false}>{userNickname}</S.AuthorName>
           <S.CommentText>
             {displayLines.map((line, i) => (
               <p key={i}>{line}</p>
@@ -72,11 +71,11 @@ const CommentItem = ({
           <S.ReactionsRow>
             <S.ReactionItem>
               <FontAwesomeIcon icon={faHeart} />
-              <span>{likeCount}</span>
+              <span>{commentLikeCount}</span>
             </S.ReactionItem>
             <S.ReactionItem>
               <FontAwesomeIcon icon={faCommentDots} />
-              <span>{replyCount}</span>
+              <span>{commentReplyCount}</span>
             </S.ReactionItem>
           </S.ReactionsRow>
           {showAccessibility && (

@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import { TAG_ON_PRIMARY } from "../../constants";
 import PostContent from "./detailComponent/PostContent";
 import FloatingChatButton from "../../common/FloatingChatButton";
@@ -31,8 +32,7 @@ const S = {
 };
 
 const PostDetailPage = () => {
-  // const navigate = useNavigate();
-  // 이전 페이지 에서 게시글의 id를 가지고 와서 fetch 를 해서 게시글을 불러오기
+  const { id: postId } = useParams();
 
   // fetch 한 데이터 가정하기
   const postDataDTO = {
@@ -78,7 +78,7 @@ const PostDetailPage = () => {
           {/* 감싸는 카드 */}
           <S.PostBodyWrapper>
             <PostContent />
-            <CommentSection />
+            <CommentSection postId={postId} />
           </S.PostBodyWrapper>
           {/* <PostContent /> */}
           {/* <CommentSection /> */}
