@@ -8,7 +8,7 @@ import PopupRoomInfoPanel from "./popupChat/PopupRoomInfoPanel";
 import PopupUserInfoPanel from "./popupChat/PopupUserInfoPanel";
 import { useChatContext } from "../context/ChatContext";
 import useAuthStore from "../../../store/authStore";
-import { getChatMessages, sendChatMessage } from "../communityApi/chatApi";
+import { getChatMessages } from "../communityApi/chatApi";
 
 const WS_BASE = "ws://localhost:10000/ws/chat";
 
@@ -93,11 +93,15 @@ const formatTime = (dateStr) => {
   });
 };
 
+let wsMessageSeq = 0;
+const makeWsMessageId = (msg) =>
+  `ws-${msg.userId}-${msg.chatCreateAt}-${++wsMessageSeq}`;
+
 const toDisplayMessage = (msg, currentUserId) => ({
-  id: msg.id,
+  id: msg.id ?? makeWsMessageId(msg),
   type: msg.userId === currentUserId ? "mine" : "other",
-  sender: msg.userNickname,
-  avatar: msg.userProfile,
+  sender: msg.userNickname ?? `사용자 ${msg.userId}`,
+  avatar: msg.userProfile ?? "",
   content: msg.chatContent,
   time: formatTime(msg.chatCreateAt),
 });
@@ -157,13 +161,15 @@ const PopupChatScreen = () => {
   }, [chatRoomId, currentUserId]);
 
   const handleSendMessage = useCallback(
-    async (content) => {
-      if (!content.trim() || !chatRoomId) return;
-      try {
-        await sendChatMessage(chatRoomId, content);
-      } catch (err) {
-        console.error("메시지 전송 실패:", err);
+    (content) => {
+      const text = content.trim();
+      if (!text || !chatRoomId) return;
+      const ws = wsRef.current;
+      if (!ws || ws.readyState !== WebSocket.OPEN) {
+        console.warn("WebSocket이 아직 연결되지 않았습니다.");
+        return;
       }
+      ws.send(JSON.stringify({ chatContent: text, chatType: "텍스트" }));
     },
     [chatRoomId],
   );
