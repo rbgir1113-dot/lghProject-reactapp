@@ -40,18 +40,6 @@ const CustomServiceNoticeContainer = () => {
 
   return (
     <>
-      {/* 히어로 카드 */}
-      <div style={styles.heroCard}>
-        <div>
-          <div style={styles.heroBadge()}>고객지원</div>
-          <h1 style={styles.heroTitle}>공지사항</h1>
-          <p style={styles.heroSub}>이음 서비스의 새로운 소식과 업데이트를 확인하세요.</p>
-        </div>
-        <div style={styles.heroIllust}>
-          <span style={{ fontSize: 36 }}>📣</span>
-        </div>
-      </div>
-
       <CustomServiceNoticeComponent
         notice={notice}
         isLoading={isLoading}

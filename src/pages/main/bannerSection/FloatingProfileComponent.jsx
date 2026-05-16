@@ -5,6 +5,10 @@ const TEMP_PROFILES = [
   '/assets/image/main/dummyUserProFileImg1.svg',
   '/assets/image/main/dummyUserProFileImg2.svg',
   '/assets/image/main/dummyUserProFileImg3.svg',
+  '/assets/image/main/dummyUserProFileImg4.svg',
+  '/assets/image/main/dummyUserProFileImg5.svg',
+  '/assets/image/main/dummyUserProFileImg6.svg',
+  '/assets/image/main/dummyUserProFileImg7.svg',
 ];
 
 const FloatingProfile = ({ profile, onRemove }) => {
@@ -48,7 +52,7 @@ const FloatingProfiles = () => {
       @keyframes floatUp {
         0%   { transform: translateY(0); opacity: 1; }
         80%  { opacity: 1; }
-        100% { transform: translateY(-400px); opacity: 0; }
+        100% { transform: translateY(-250px); opacity: 0; }
       }
     `;
     document.head.appendChild(style);
@@ -66,7 +70,7 @@ const FloatingProfiles = () => {
         duration: Math.random() * 1 + 3
       };
       setProfiles(prev => [...prev, newProfile]);
-    }, 1500);
+    }, 4500);
 
     return () => clearInterval(interval);
   }, []);

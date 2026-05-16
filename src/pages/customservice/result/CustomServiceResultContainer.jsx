@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { styles } from '../style';
 import CustomServiceResultComponent from './CustomServiceResultComponent';
+import useAuthCheck from '../useAuthCheck';
 
 // ─── 더미 데이터 (백엔드 연동 전까지만 사용) ──────────────
 const DUMMY_RESULTS = [
@@ -24,6 +25,7 @@ const DUMMY_RESULTS = [
 
 // ─── Container ───────────────────────────────────────────
 const CustomServiceResultContainer = () => {
+  const isAuth = useAuthCheck();
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -37,9 +39,11 @@ const CustomServiceResultContainer = () => {
     setIsLoading(false);
   }, []);
 
-  const totalCount    = results.length;
-  const doneCount     = results.filter((r) => r.status === '답변완료').length;
-  const pendingCount  = results.filter((r) => r.status === '처리중').length;
+  const totalCount   = results.length;
+  const doneCount    = results.filter((r) => r.status === '답변완료').length;
+  const pendingCount = results.filter((r) => r.status === '처리중').length;
+
+  if (!isAuth) return null;
 
   return (
     <>
@@ -51,8 +55,8 @@ const CustomServiceResultContainer = () => {
           <p style={styles.heroSub}>접수하신 문의 내역과 답변을 확인하세요.</p>
         </div>
         <div style={styles.heroIllust}>
-          <span style={{ display:'flex' }}>
-            <img src="/assets/image/customService/customServiceResultIcon.svg" alt="" />
+          <span style={{ display: 'flex' }}>
+            <img src="/assets/image/customService/resultIcon.svg" alt="" style={{ width:'80px' }}/>
           </span>
         </div>
       </div>

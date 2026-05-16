@@ -1,8 +1,13 @@
 import React from 'react';
 import CustomServiceInquireComponent from './CustomServiceInquireComponent';
 import { styles } from '../style';
+import useAuthCheck from '../useAuthCheck';
 
 const CustomServiceInquireContainer = () => {
+    const isAuth = useAuthCheck();
+
+    if (!isAuth) return null;
+
     return (
         <>
             <div style={styles.heroCard}>
@@ -13,7 +18,7 @@ const CustomServiceInquireContainer = () => {
                 </div>
                 <div style={styles.heroIllust}>
                     <span style={{ display:'flex' }}>
-                        <img src="/assets/image/customService/customServiceQ&AIcon.svg" alt="" />
+                        <img src="/assets/image/customService/messageIcon.svg" alt="" style={{width:'80px'}}/>
                     </span>
                 </div>
             </div>

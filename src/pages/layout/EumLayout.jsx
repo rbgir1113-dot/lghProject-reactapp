@@ -4,15 +4,23 @@ import theme from '../../styles/theme';
 import { styles } from './style';
 
 const navLinks = [
+  { label: '커뮤니티', to: '/community' },
   { label: '학습',    to: '/study' },
   { label: '시험',    to: '/exam/info/notice' },
-  { label: '커뮤니티', to: '/community' },
   { label: '고객지원', to: '/customservice/notice' },
 ];
 
 const EumLayout = () => {
   const [hoveredNav, setHoveredNav] = useState(null);
   const [user, setUser] = useState(null);
+  const [hasNotification, setHasNotification] = useState(false);
+  
+    // 백엔드 연동
+    useEffect(() => {
+      // const res = await fetch('/api/notifications/unread');
+      // const data = await res.json();
+      // setHasNotification(data.count > 0);
+    }, []);
 
   useEffect(() => {
     fetch('http://localhost:10000/private/api/users/me', {
@@ -34,6 +42,7 @@ const EumLayout = () => {
     } catch {}
     setUser(null);
     window.location.href = '/';
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -92,40 +101,20 @@ const EumLayout = () => {
                     {user.userNickname || user.userName}
                   </span>
                 </div>
-                <Link
-                  to="/mypage"
-                  style={{
-                    fontSize: theme.FONT_SIZE.h10,
-                    fontWeight: theme.FONT_WEIGHT.bold,
-                    color: theme.PALETTE.primary.main,
-                    textDecoration: 'none',
-                    padding: '0 16px',
-                    border: `1.5px solid ${theme.PALETTE.primary.main}`,
-                    borderRadius: '8px',
-                    whiteSpace: 'nowrap',
-                    height: '34px',
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  마이페이지
+                <button style={{paddingTop:'5px'}}>
+                < img src={hasNotification 
+                      ? '/assets/image/layout/bellIconActive.svg'
+                      : '/assets/image/layout/bellIcon.svg'
+                    } style={{width:'44px', height:'44px',display:'flex', alignItems:'center',}}/>
+                </button>
+                <Link to="/mypage" style={styles.rightNav}>
+                  <span style={styles.rigthBorderNav}>마이페이지</span>
                 </Link>
                 <button
                   onClick={handleLogout}
-                  style={{
-                    fontSize: theme.FONT_SIZE.h10,
-                    fontWeight: theme.FONT_WEIGHT.bold,
-                    color: theme.PALETTE.white,
-                    background: theme.PALETTE.primary.main,
-                    border: 'none',
-                    borderRadius: '8px',
-                    padding: '0 16px',
-                    cursor: 'pointer',
-                    whiteSpace: 'nowrap',
-                    height: '34px',
-                  }}
+                  style={styles.rigthBackGroundNav}
                 >
-                  로그아웃
+                <span style={styles.join}>로그아웃</span>
                 </button>
               </div>
             ) : (

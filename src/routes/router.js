@@ -57,7 +57,8 @@ import CustomServicePrivacyContainer from "../pages/customservice/privacy/Custom
 import CustomServiceResultContainer from "../pages/customservice/result/CustomServiceResultContainer";
 import MyPageEditContainer from "../pages/mypage/edit/MyPageEditContainer";
 import MyPageWithdrawContainer from "../pages/mypage/withdraw/MyPageWithdrawContainer";
-import CustomServiceNoticeListContainer from '../pages/customservice/notice/CustomServiceNoticeListContainer';
+import CustomServiceNoticeListContainer from '../pages/customservice/notice/list/CustomServiceNoticeListContainer';
+import CustomServiceNoticeWriteContainer from '../pages/customservice/notice/write/CustomServiceNoticeWriteContainer';
 
 const router = createBrowserRouter([
   {
@@ -286,6 +287,10 @@ const router = createBrowserRouter([
                   {
                     path: ":id",
                     element: <CustomServiceNoticeContainer />
+                  },
+                  {
+                    path: "write",                                    // ← 이거 추가
+                    element: <CustomServiceNoticeWriteContainer />
                   }
                 ]
           },

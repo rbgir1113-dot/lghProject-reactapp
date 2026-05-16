@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams, Outlet } from 'react-router-dom';
-import { styles } from '../style';
+import { styles } from '../../style';
 import CustomServiceNoticeListComponent from './CustomServiceNoticeListComponent';
+import { useNavigate, useParams, Outlet, useLocation } from 'react-router-dom';
 
 const TABS = ["전체", "공지", "업데이트", "이벤트"];
 const ITEMS_PER_PAGE = 10;
@@ -30,12 +30,35 @@ const fetchNoticesAPI = ({ category, page, size }) => {
 const CustomServiceNoticeListContainer = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const location = useLocation();
+  const isWrite = location.pathname.endsWith('/write');
+
   const [notices, setNotices]         = useState([]);
   const [activeTab, setActiveTab]     = useState("전체");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages]   = useState(1);
   const [isLoading, setIsLoading]     = useState(false);
   const [error, setError]             = useState(null);
+  const [isAdmin, setIsAdmin]         = useState(false);  // ← 추가
+
+  // 로그인 유저 정보 가져오기
+  useEffect(() => {
+    const fetchMe = async () => {
+      try {
+        const res = await fetch('http://localhost:10000/api/auth/me', { credentials: 'include' });  // ← URL 변경
+        console.log('me status:', res.status);
+        if (res.ok) {
+          const user = await res.json();
+          console.log('me user:', user);
+          setIsAdmin(user.role === 'ADMIN');
+        }
+      } catch (err) {
+        console.log('me error:', err);
+        setIsAdmin(false);
+      }
+    };
+    fetchMe();
+  }, []);
 
   useEffect(() => {
     const loadNotices = async () => {
@@ -60,31 +83,44 @@ const CustomServiceNoticeListContainer = () => {
     setCurrentPage(1);
   };
 
+  const handleWriteClick = () => {
+    navigate('/customservice/notice/write');
+    window.scrollTo(0, 0);
+  };
+
   const handleNoticeClick = (notice) => {
     navigate(`/customservice/notice/${notice.id}`);
   };
 
-  // id 있으면 상세 페이지만 렌더링 (heroCard는 CustomServiceNoticeContainer에 있음)
-  if (id) {
-    return <Outlet />;
+  const heroCard = (
+    <div style={styles.heroCard}>
+      <div>
+        <div style={styles.heroBadge()}>고객지원</div>
+        <h1 style={styles.heroTitle}>공지사항</h1>
+        <p style={styles.heroSub}>이음 서비스의 새로운 소식과 업데이트를 확인하세요.</p>
+      </div>
+      <div style={styles.heroIllust}>
+        <span style={{ display: 'flex' }}>
+          <img src="/assets/image/customService/noticeIcon.svg" alt="" style={{width: '80px'}}/>
+        </span>
+      </div>
+    </div>
+  );
+
+  // 상세 or 글쓰기 → heroCard + Outlet만 렌더링
+  if (id || isWrite) {
+    return (
+      <>
+        {heroCard}
+        <Outlet />
+      </>
+    );
   }
 
-  // id 없으면 목록 렌더링
+  // 목록
   return (
     <>
-      <div style={styles.heroCard}>
-        <div>
-          <div style={styles.heroBadge()}>고객지원</div>
-          <h1 style={styles.heroTitle}>공지사항</h1>
-          <p style={styles.heroSub}>이음 서비스의 새로운 소식과 업데이트를 확인하세요.</p>
-        </div>
-        <div style={styles.heroIllust}>
-          <span style={{ display:'flex' }}>
-            <img src="/assets/image/customService/customServiceNoticeIcon.svg" alt="" />
-          </span>
-        </div>
-      </div>
-
+      {heroCard}
       <CustomServiceNoticeListComponent
         notices={notices}
         tabs={TABS}
@@ -96,6 +132,8 @@ const CustomServiceNoticeListContainer = () => {
         onTabChange={handleTabChange}
         onPageChange={setCurrentPage}
         onNoticeClick={handleNoticeClick}
+        onWriteClick={handleWriteClick}
+        isAdmin={isAdmin}
       />
     </>
   );

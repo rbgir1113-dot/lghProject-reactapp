@@ -1,5 +1,6 @@
 import React from 'react';
-import { PRIMARY } from '../style';
+import { PRIMARY } from '../../style';
+import theme from '../../../../styles/theme';
 
 const CATEGORY_STYLE = {
   공지:    { color: "#4f6ef7", background: "#eef0fd" },
@@ -17,7 +18,7 @@ const NoticeRow = ({ notice, onNoticeClick }) => {
       onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
     >
       <td style={{ padding: "13px 12px", textAlign: "center", fontSize: 13, color: "#aaa", fontWeight: 500 }}>
-        {notice.pinned ? <span style={{ color: PRIMARY, fontSize: 16 }}>●</span> : notice.id}
+        {notice.pinned ? <span style={{ fontSize: 16 }}>📌</span> : notice.id}
       </td>
       <td style={{ padding: "13px 12px", textAlign: "center" }}>
         <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 20, fontSize: 12, fontWeight: 700, ...catStyle }}>
@@ -66,23 +67,42 @@ const CustomServiceNoticeListComponent = ({
   onTabChange,
   onPageChange,
   onNoticeClick,
+  onWriteClick,
+  isAdmin = false,
 }) => {
   if (isLoading) return <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: 200, color: "#aaa", fontSize: 14 }}>불러오는 중...</div>;
   if (error)     return <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: 200, color: "#f55", fontSize: 14 }}>{error}</div>;
 
   return (
     <div style={{ background: "#fff", borderRadius: 14, padding: "24px 28px", border: "1px solid #eee" }}>
-      {/* 탭 */}
-      <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
-        {tabs.map((tab) => (
-          <button key={tab} onClick={() => onTabChange(tab)} style={{
-            padding: "7px 18px", borderRadius: 20, border: "none",
-            background: activeTab === tab ? PRIMARY : "#f2f3f8",
-            color: activeTab === tab ? "#fff" : "#555",
-            fontWeight: activeTab === tab ? 700 : 500,
-            fontSize: 13, cursor: "pointer", transition: "all 0.15s",
-          }}>{tab}</button>
-        ))}
+      {/* 탭 + 글쓰기 버튼 */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+        <div style={{ display: "flex", gap: 8 }}>
+          {tabs.map((tab) => (
+            <button key={tab} onClick={() => onTabChange(tab)} style={{
+              padding: "7px 18px", borderRadius: 20, border: "none",
+              background: activeTab === tab ? PRIMARY : "#f2f3f8",
+              color: activeTab === tab ? "#fff" : "#555",
+              fontWeight: activeTab === tab ? 700 : 500,
+              fontSize: 13, cursor: "pointer", transition: "all 0.15s",
+            }}>{tab}</button>
+          ))}
+        </div>
+
+        {/* 관리자일 때만 글쓰기 버튼 표시 */}
+        {isAdmin && (
+          <button
+            onClick={onWriteClick}
+            style={{
+              padding: "7px 18px", borderRadius: 20,
+              background: PRIMARY, color: "#fff",  // 파란 배경으로 변경
+              fontWeight: 600, fontSize: 13, cursor: "pointer",
+              transition: "all 0.15s",
+            }}
+          >
+            + 글쓰기
+          </button>
+        )}
       </div>
 
       {/* 테이블 */}
