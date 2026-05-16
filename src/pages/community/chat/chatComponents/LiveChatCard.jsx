@@ -113,9 +113,9 @@ const JoinButton = styled.button`
 `;
 
 const LiveChatCard = ({
-  title = "수어 학습 질문방",
-  description = "수어 학습 중 궁금한 점을 함께 해결해요. 초보자도 편하게!",
-  participantCount = "00",
+  chatRoomName = "채팅방",
+  chatRoomDetail = "",
+  chatRoomUsers = 0,
   isLive = true,
   onJoin,
 }) => {
@@ -124,22 +124,16 @@ const LiveChatCard = ({
       <CardHeader />
       <CardBody>
         <InfoArea>
-          {/* {isLive && (
-            <LiveBadge>
-              <LiveDot />
-              <LiveText>라이브</LiveText>
-            </LiveBadge>
-          )} */}
           <RoomTitle style={{ marginTop: isLive ? "8px" : "0" }}>
-            {title}
+            {chatRoomName}
           </RoomTitle>
-          <T.H10Regular $color={theme.GRAYSCALE[9]}>{description}</T.H10Regular>
+          <T.H10Regular $color={theme.GRAYSCALE[9]}>{chatRoomDetail}</T.H10Regular>
         </InfoArea>
         <Divider />
         <BottomRow>
           <ParticipantInfo>
             <ParticipantLabel>참여 중</ParticipantLabel>
-            <ParticipantCount>{participantCount}명</ParticipantCount>
+            <ParticipantCount>{chatRoomUsers}명</ParticipantCount>
           </ParticipantInfo>
           <JoinButton onClick={onJoin}>참여하기</JoinButton>
         </BottomRow>
