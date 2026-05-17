@@ -9,7 +9,7 @@ const CATEGORY_STYLE = {
 };
 
 const NoticeRow = ({ notice, onNoticeClick }) => {
-  const catStyle = CATEGORY_STYLE[notice.category] || {};
+  const catStyle = CATEGORY_STYLE[notice.noticeCategory] || {};  // category → noticeCategory
   return (
     <tr
       onClick={() => onNoticeClick(notice)}
@@ -18,18 +18,18 @@ const NoticeRow = ({ notice, onNoticeClick }) => {
       onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
     >
       <td style={{ padding: "13px 12px", textAlign: "center", fontSize: 13, color: "#aaa", fontWeight: 500 }}>
-        {notice.pinned ? <span style={{ fontSize: 16 }}>📌</span> : notice.id}
+        {notice.noticePinned === 1 ? <span style={{ fontSize: 16 }}>📌</span> : notice.id}
       </td>
       <td style={{ padding: "13px 12px", textAlign: "center" }}>
         <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 20, fontSize: 12, fontWeight: 700, ...catStyle }}>
-          {notice.category}
+          {notice.noticeCategory}
         </span>
       </td>
-      <td style={{ padding: "13px 12px", fontSize: 14, color: "#1a1a2e", fontWeight: notice.pinned ? 600 : 400 }}>
-        {notice.title}
+      <td style={{ padding: "13px 12px", fontSize: 14, color: "#1a1a2e", fontWeight: notice.noticePinned === 1 ? 600 : 400 }}>
+        {notice.noticeTitle}
       </td>
       <td style={{ padding: "13px 12px", textAlign: "center", fontSize: 13, color: "#aaa" }}>
-        {notice.date}
+        {notice.noticeCreateAt ? notice.noticeCreateAt.slice(0, 10).replaceAll('-', '.') : ''}
       </td>
     </tr>
   );

@@ -6,32 +6,26 @@ import { useNavigate, useParams, Outlet, useLocation } from 'react-router-dom';
 const TABS = ["전체", "공지", "업데이트", "이벤트"];
 const ITEMS_PER_PAGE = 10;
 
-const DUMMY_NOTICES = [
-  { id: "pin1", pinned: true,  category: "공지",    title: "[필독] 이음 서비스 이용약관 개정 안내",   date: "2026.05.05" },
-  { id: "pin2", pinned: true,  category: "업데이트", title: "이음 커뮤니티 채팅방이 새롭게 열렸어요!", date: "2026.05.05" },
-  { id: 7,      pinned: false, category: "이벤트",  title: "5월 어린이날 특별 이벤트",               date: "2026.05.05" },
-  { id: 6,      pinned: false, category: "공지",    title: "[필독] 이음 서비스 이용약관 개정 안내",   date: "2026.05.05" },
-  { id: 5,      pinned: false, category: "업데이트", title: "이음 커뮤니티 채팅방이 새롭게 열렸어요!", date: "2026.05.05" },
-  { id: 4,      pinned: false, category: "이벤트",  title: "5월 어린이날 특별 이벤트",               date: "2026.05.05" },
-  { id: 3,      pinned: false, category: "이벤트",  title: "5월 어린이날 특별 이벤트",               date: "2026.05.05" },
-  { id: 2,      pinned: false, category: "공지",    title: "[필독] 이음 서비스 이용약관 개정 안내",   date: "2026.05.05" },
-  { id: 1,      pinned: false, category: "업데이트", title: "이음 커뮤니티 채팅방이 새롭게 열렸어요!", date: "2026.05.05" },
-];
+const fetchNoticesAPI = async ({ category, page, size }) => {
+  const offset = (page - 1) * size;
+  const params = new URLSearchParams({ offset, size });
+  if (category) params.append('noticeCategory', category);
 
-const fetchNoticesAPI = ({ category, page, size }) => {
-  const filtered = category
-    ? DUMMY_NOTICES.filter((n) => n.category === category)
-    : DUMMY_NOTICES;
-  const totalPages = Math.ceil(filtered.length / size) || 1;
-  const notices = filtered.slice((page - 1) * size, page * size);
-  return Promise.resolve({ notices, totalPages });
+  const res = await fetch(`http://localhost:10000/api/notice?${params}`, {
+    credentials: 'include'
+  });
+  const data = await res.json();
+  return {
+    notices: data.notices,
+    totalPages: Math.ceil(data.total / size) || 1
+  };
 };
 
 const CustomServiceNoticeListContainer = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const location = useLocation();
-  const isWrite = location.pathname.endsWith('/write');
+  const isDetail = id && id !== 'write';
 
   const [notices, setNotices]         = useState([]);
   const [activeTab, setActiveTab]     = useState("전체");
@@ -39,21 +33,17 @@ const CustomServiceNoticeListContainer = () => {
   const [totalPages, setTotalPages]   = useState(1);
   const [isLoading, setIsLoading]     = useState(false);
   const [error, setError]             = useState(null);
-  const [isAdmin, setIsAdmin]         = useState(false);  // ← 추가
+  const [isAdmin, setIsAdmin]         = useState(false);
 
-  // 로그인 유저 정보 가져오기
   useEffect(() => {
     const fetchMe = async () => {
       try {
-        const res = await fetch('http://localhost:10000/api/auth/me', { credentials: 'include' });  // ← URL 변경
-        console.log('me status:', res.status);
+        const res = await fetch('http://localhost:10000/api/auth/me', { credentials: 'include' });
         if (res.ok) {
           const user = await res.json();
-          console.log('me user:', user);
           setIsAdmin(user.role === 'ADMIN');
         }
       } catch (err) {
-        console.log('me error:', err);
         setIsAdmin(false);
       }
     };
@@ -61,6 +51,8 @@ const CustomServiceNoticeListContainer = () => {
   }, []);
 
   useEffect(() => {
+    if (isDetail) return;
+
     const loadNotices = async () => {
       setIsLoading(true);
       setError(null);
@@ -76,7 +68,7 @@ const CustomServiceNoticeListContainer = () => {
       }
     };
     loadNotices();
-  }, [activeTab, currentPage]);
+  }, [activeTab, currentPage, isDetail]);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -107,8 +99,7 @@ const CustomServiceNoticeListContainer = () => {
     </div>
   );
 
-  // 상세 or 글쓰기 → heroCard + Outlet만 렌더링
-  if (id || isWrite) {
+  if (isDetail) {
     return (
       <>
         {heroCard}
@@ -117,7 +108,6 @@ const CustomServiceNoticeListContainer = () => {
     );
   }
 
-  // 목록
   return (
     <>
       {heroCard}

@@ -3,7 +3,7 @@ import { PRIMARY, RED } from '../style';
 
 const CATEGORIES = ['학습 문의', '결제 / 환불', '계정 / 로그인', '기타'];
 
-const CustomServiceInquireComponent = () => {
+const CustomServiceInquireComponent = ({ onSubmit }) => {  // ← onSubmit 추가
   const [activeCategory, setActiveCategory] = useState('학습 문의');
   const [email, setEmail]     = useState('');
   const [title, setTitle]     = useState('');
@@ -17,14 +17,11 @@ const CustomServiceInquireComponent = () => {
     const newFiles = Array.from(e.target.files);
     const existingNames = files.map(f => f.name);
     const filtered = newFiles.filter(f => !existingNames.includes(f.name));
-
-    // 이미지 파일만 미리보기 URL 생성
     filtered.forEach(file => {
       if (file.type.startsWith('image/')) {
         previewUrls.current[getKey(file)] = URL.createObjectURL(file);
       }
     });
-
     setFiles(prev => [...prev, ...filtered]);
     e.target.value = '';
   };
@@ -47,9 +44,20 @@ const CustomServiceInquireComponent = () => {
     };
   }, []);
 
-  const handleSubmit = () => {
-    console.log({ activeCategory, email, title, content, files });
-  };
+  const handleSubmit = async () => {
+  if (!email.trim()) return alert('이메일을 입력해주세요.');
+  if (!title.trim()) return alert('제목을 입력해주세요.');
+  if (content.trim().length < 10) return alert('내용을 최소 10자 이상 입력해주세요.');
+  
+  await onSubmit({ category: activeCategory, email, title, content, files });
+
+  // 초기화
+  setActiveCategory('학습 문의');
+  setEmail('');
+  setTitle('');
+  setContent('');
+  setFiles([]);
+};
 
   const inputStyle = {
     width: '100%', padding: '12px 16px', borderRadius: 10,
@@ -124,7 +132,6 @@ const CustomServiceInquireComponent = () => {
           <input type="file" multiple style={{ display: 'none' }} onChange={handleFileChange} />
           + 파일을 드래그하거나 클릭해서 첨부하세요. (최대 5MB)
         </label>
-
         {files.length > 0 && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 10 }}>
             {files.map((file, i) => {

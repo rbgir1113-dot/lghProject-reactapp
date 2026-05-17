@@ -3,51 +3,74 @@ import { styles } from '../style';
 import CustomServiceResultComponent from './CustomServiceResultComponent';
 import useAuthCheck from '../useAuthCheck';
 
-// ─── 더미 데이터 (백엔드 연동 전까지만 사용) ──────────────
-const DUMMY_RESULTS = [
-  {
-    id: 1,
-    title: '수어 단어 영상이 재생되지 않아요',
-    date: '2026.05.05',
-    status: '답변완료',
-    question: '수어 단어 영상이 재생되지 않아요. 크롬 브라우저에서 계속 로딩만 됩니다.',
-    answer: '브라우저 캐시 초기화 및 재접속 후 재시도 해주세요. 지속 시 ium999@gmail.com으로 연락주시면 개별 확인 도와드리겠습니다.',
-  },
-  {
-    id: 2,
-    title: '커리큘럼 레벨 변경이 가능한가요?',
-    date: '2026.05.05',
-    status: '처리중',
-    question: '현재 중급 과정을 수강 중인데 초급으로 변경이 가능한지 궁금합니다.',
-    answer: null,
-  },
-];
-
-// ─── Container ───────────────────────────────────────────
 const CustomServiceResultContainer = () => {
   const isAuth = useAuthCheck();
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    // TODO: 백엔드 연동 시 실제 fetch로 교체
-    // const res = await fetch('/api/inquiries');
-    // const data = await res.json();
-    setResults(DUMMY_RESULTS);
-    setIsLoading(false);
+    const fetchMe = async () => {
+      try {
+        const res = await fetch('http://localhost:10000/api/auth/me', { credentials: 'include' });
+        if (res.ok) {
+          const user = await res.json();
+          setIsAdmin(user.role === 'ADMIN');
+        }
+      } catch (err) {
+        setIsAdmin(false);
+      }
+    };
+    fetchMe();
   }, []);
 
+  const loadResults = async () => {
+  setIsLoading(true);
+  try {
+    const url = isAdmin
+      ? 'http://localhost:10000/api/inquire/admin'
+      : 'http://localhost:10000/api/inquire';
+    const res = await fetch(url, { credentials: 'include' });
+    if (!res.ok) throw new Error('문의 목록을 불러올 수 없습니다.');
+    const data = await res.json();
+    setResults(data);
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+  // useEffect 의존성에 isAdmin 추가
+  useEffect(() => {
+    loadResults();
+  }, [isAdmin]);
+
+  const handleAnswer = async (id, answer) => {
+    try {
+      const res = await fetch(`http://localhost:10000/api/inquire/${id}/answer`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ inquireAnswer: answer }),
+      });
+      if (!res.ok) throw new Error('답변 실패');
+      alert('답변이 등록되었습니다.');
+      loadResults();
+    } catch (err) {
+      alert('답변 등록에 실패했습니다.');
+    }
+  };
+
   const totalCount   = results.length;
-  const doneCount    = results.filter((r) => r.status === '답변완료').length;
-  const pendingCount = results.filter((r) => r.status === '처리중').length;
+  const doneCount    = results.filter((r) => r.inquireStatus === '답변완료').length;
+  const pendingCount = results.filter((r) => r.inquireStatus === '대기').length;
 
   if (!isAuth) return null;
 
   return (
     <>
-      {/* 히어로 카드 */}
       <div style={styles.heroCard}>
         <div>
           <div style={styles.heroBadge()}>고객지원</div>
@@ -61,7 +84,6 @@ const CustomServiceResultContainer = () => {
         </div>
       </div>
 
-      {/* 통계 카드 */}
       <div style={{ display: 'flex', gap: 14 }}>
         {[
           { label: '전체 문의', count: totalCount },
@@ -78,11 +100,12 @@ const CustomServiceResultContainer = () => {
         ))}
       </div>
 
-      {/* 문의 목록 */}
       <CustomServiceResultComponent
         results={results}
         isLoading={isLoading}
         error={error}
+        isAdmin={isAdmin}
+        onAnswer={handleAnswer}
       />
     </>
   );

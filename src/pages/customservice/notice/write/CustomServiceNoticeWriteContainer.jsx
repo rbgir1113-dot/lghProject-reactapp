@@ -6,11 +6,27 @@ import CustomServiceNoticeWriteComponent from './CustomServiceNoticeWriteCompone
 const CustomServiceNoticeWriteContainer = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (formData) => {
-    // TODO: 백엔드 연동 시 API 호출
-    // const res = await fetch('/api/notices', { method: 'POST', body: formData });
-    console.log('공지사항 작성:', formData);
-    navigate('/customservice/notice');
+  const handleSubmit = async (formData) => {
+    try {
+      const res = await fetch('http://localhost:10000/api/notice', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          noticeTitle:    formData.title,
+          noticeContent:  formData.content,
+          noticeCategory: formData.category,
+          noticePinned:   formData.pinned ? 1 : 0,
+          noticeFileUrl:  formData.fileUrl || 'default.jpg',
+          userId:         formData.userId,
+        }),
+      });
+      if (!res.ok) throw new Error('등록 실패');
+      navigate('/customservice/notice');
+    } catch (err) {
+      console.error('등록 에러:', err);
+      alert('등록에 실패했습니다.');
+    }
   };
 
   const handleCancel = () => {

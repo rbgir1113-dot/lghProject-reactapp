@@ -1,47 +1,18 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { PRIMARY, RED } from '../../style';
 
 const CATEGORIES = ['공지', '업데이트', '이벤트'];
 
-const CustomServiceNoticeWriteComponent = ({ onSubmit, onCancel }) => {
-  const [category, setCategory]   = useState('공지');
-  const [pinned, setPinned]       = useState(false);
-  const [title, setTitle]         = useState('');
-  const [content, setContent]     = useState('');
-  const [files, setFiles]         = useState([]);
-  const previewUrls = useRef({});
-
-  const getKey = (file) => file.name + file.lastModified;
-
-  const handleFileChange = (e) => {
-    const newFiles = Array.from(e.target.files);
-    const existingNames = files.map(f => f.name);
-    const filtered = newFiles.filter(f => !existingNames.includes(f.name));
-    filtered.forEach(file => {
-      if (file.type.startsWith('image/')) {
-        previewUrls.current[getKey(file)] = URL.createObjectURL(file);
-      }
-    });
-    setFiles(prev => [...prev, ...filtered]);
-    e.target.value = '';
-  };
-
-  const handleRemoveFile = (index) => {
-    setFiles(prev => {
-      const removed = prev[index];
-      const key = getKey(removed);
-      if (previewUrls.current[key]) {
-        URL.revokeObjectURL(previewUrls.current[key]);
-        delete previewUrls.current[key];
-      }
-      return prev.filter((_, i) => i !== index);
-    });
-  };
+const CustomServiceNoticeWriteComponent = ({ onSubmit, onCancel, initialData }) => {
+  const [category, setCategory] = useState(initialData?.category || '공지');
+  const [pinned, setPinned]     = useState(initialData?.pinned || false);
+  const [title, setTitle]       = useState(initialData?.title || '');
+  const [content, setContent]   = useState(initialData?.content || '');
 
   const handleSubmit = () => {
     if (!title.trim()) return alert('제목을 입력해주세요.');
     if (!content.trim()) return alert('내용을 입력해주세요.');
-    onSubmit({ category, pinned, title, content, files });
+    onSubmit({ category, pinned, title, content });
   };
 
   const inputStyle = {
@@ -77,10 +48,7 @@ const CustomServiceNoticeWriteComponent = ({ onSubmit, onCancel }) => {
 
       {/* 고정글 여부 */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-        <input
-          type="checkbox"
-          id="pinned"
-          checked={pinned}
+        <input type="checkbox" id="pinned" checked={pinned}
           onChange={(e) => setPinned(e.target.checked)}
           style={{ width: 16, height: 16, cursor: 'pointer', accentColor: PRIMARY }}
         />
@@ -106,47 +74,6 @@ const CustomServiceNoticeWriteComponent = ({ onSubmit, onCancel }) => {
           style={{ ...inputStyle, height: 200, resize: 'vertical' }}
           onFocus={(e) => (e.target.style.borderColor = PRIMARY)}
           onBlur={(e) => (e.target.style.borderColor = '#e0e0ea')} />
-      </div>
-
-      {/* 파일 첨부 */}
-      <div>
-        <label style={labelStyle}>파일 첨부</label>
-        <label style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          padding: '14px', borderRadius: 10, border: '1.5px dashed #d0d0e0',
-          background: '#fafafa', fontSize: 13, color: '#aaa', cursor: 'pointer',
-        }}>
-          <input type="file" multiple style={{ display: 'none' }} onChange={handleFileChange} />
-          + 파일을 드래그하거나 클릭해서 첨부하세요. (최대 5MB)
-        </label>
-        {files.length > 0 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 10 }}>
-            {files.map((file, i) => {
-              const previewUrl = previewUrls.current[getKey(file)];
-              return (
-                <div key={i} style={{
-                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                  padding: '8px 12px', borderRadius: 8, background: '#f5f5f7',
-                  fontSize: 13, color: '#555', gap: 10,
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, overflow: 'hidden' }}>
-                    {previewUrl && (
-                      <img src={previewUrl} alt={file.name} style={{
-                        width: 48, height: 48, objectFit: 'cover', borderRadius: 6,
-                        flexShrink: 0, border: '1px solid #e0e0ea',
-                      }} />
-                    )}
-                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{file.name}</span>
-                  </div>
-                  <button onClick={() => handleRemoveFile(i)}
-                    style={{ border: 'none', background: 'none', color: '#aaa', cursor: 'pointer', fontSize: 16, flexShrink: 0 }}>
-                    ✕
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        )}
       </div>
 
       {/* 버튼 */}

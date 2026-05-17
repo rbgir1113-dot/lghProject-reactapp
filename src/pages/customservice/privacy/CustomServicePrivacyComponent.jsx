@@ -88,7 +88,7 @@ const CustomServicePrivacyComponent = () => {
             </tr>
             <tr>
               <td style={tdStyle(theme.PALETTE.warning.main)}>선택</td>
-              <td style={tdStyle()}>프로필 사진, 학습목표, 관심 분야, 징각 상태</td>
+              <td style={tdStyle()}>프로필 사진, 학습목표, 관심 분야, 청각 상태</td>
               <td style={tdStyle()}>직접 입력</td>
             </tr>
             <tr>

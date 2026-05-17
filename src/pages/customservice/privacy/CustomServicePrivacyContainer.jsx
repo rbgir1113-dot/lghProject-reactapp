@@ -14,7 +14,7 @@ const CustomServicePrivacyContainer = () => {
         </div>
         <div style={styles.heroIllust}>
           <span style={{ display:'flex' }}>
-            <img src="/assets/image/customService/eumServiceIcon.svg" alt="" />
+            <img src="/assets/image/customService/eumServiceIcon.svg" alt=""  style={{width:'80px'}}/>
           </span>
         </div>
       </div>

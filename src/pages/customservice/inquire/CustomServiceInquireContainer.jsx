@@ -8,6 +8,28 @@ const CustomServiceInquireContainer = () => {
 
     if (!isAuth) return null;
 
+    const handleSubmit = async (formData) => {
+        try {
+            const res = await fetch('http://localhost:10000/api/inquire', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({
+                inquireType:    formData.category,
+                inquireEmail:   formData.email,
+                inquireTitle:   formData.title,
+                inquireContent: formData.content,
+                inquireFileUrl: 'default.jpg',
+            }),
+            });
+            if (!res.ok) throw new Error('등록 실패');
+            alert('문의가 등록되었습니다.');
+        } catch (err) {
+            alert('문의 등록에 실패했습니다.');
+            throw err;  // ← 에러 시 초기화 안 되게
+        }
+    };
+
     return (
         <>
             <div style={styles.heroCard}>
@@ -23,7 +45,7 @@ const CustomServiceInquireContainer = () => {
                 </div>
             </div>
             <div>
-                <CustomServiceInquireComponent />
+                <CustomServiceInquireComponent onSubmit={handleSubmit} />
             </div>
         </>
     );
